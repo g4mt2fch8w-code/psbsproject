@@ -1,0 +1,53 @@
+===== src/routes/gallery.tsx =====
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/gallery')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  return <div>Hello "/gallery"!</div>
+}
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/gallery')({
+  component: GalleryPage,
+})
+
+function GalleryPage() {
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <div className="mx-auto max-w-5xl px-4 py-16 space-y-12">
+        <header className="space-y-4">
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+            Gallery
+          </h1>
+          <p className="text-slate-300 max-w-2xl">
+            Photos, videos, and field work glimpses from PSBS Bhandara.
+          </p>
+        </header>
+
+        <section className="space-y-6">
+          <h2 className="text-xl font-semibold">Photos</h2>
+          <p className="text-slate-300">
+            We will later show a photo grid here with lazy loading and lightbox.
+          </p>
+        </section>
+
+        <section className="space-y-6">
+          <h2 className="text-xl font-semibold">Videos</h2>
+          <p className="text-slate-300">
+            Placeholder for conservation stories and field documentation.
+          </p>
+        </section>
+
+        <section className="space-y-6">
+          <h2 className="text-xl font-semibold">Field Work</h2>
+          <p className="text-slate-300">
+            Highlights from plantations, rescues, awareness drives, and more.
+          </p>
+        </section>
+      </div>
+    </div>
+  )
+}

@@ -1,0 +1,61 @@
+===== src/routes/volunteer-t.tsx =====
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/volunteer-t')({
+  component: VolunteerPage,
+})
+
+function VolunteerPage() {
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <div className="mx-auto max-w-5xl px-4 py-16 space-y-12">
+        <header className="space-y-4">
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+            Volunteer with PSBS Bhandara
+          </h1>
+          <p className="text-slate-300 max-w-2xl">
+            Join our efforts in conservation, awareness, and community engagement.
+          </p>
+        </header>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Benefits</h2>
+          <p className="text-slate-300">
+            Learn field skills, contribute to real conservation, and build networks.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Activities</h2>
+          <p className="text-slate-300">
+            Plantation drives, wildlife rescues, awareness events, data collection, and more.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Requirements</h2>
+          <p className="text-slate-300">
+            Basic interest in environment, time commitment, and willingness to learn.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Registration</h2>
+          <button
+            type="button"
+            className="inline-flex items-center rounded-full bg-emerald-500 px-6 py-3 text-sm font-medium text-slate-950 hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+          >
+            Fill Volunteer Form
+          </button>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">FAQ</h2>
+          <p className="text-slate-300">
+            We will later add common questions and answers here.
+          </p>
+        </section>
+      </div>
+    </div>
+  )
+}

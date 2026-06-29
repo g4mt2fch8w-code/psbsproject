@@ -1,0 +1,99 @@
+===== src/routes/contact.tsx =====
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/contact')({
+  component: ContactPage,
+})
+
+function ContactPage() {
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <div className="mx-auto max-w-5xl px-4 py-16 space-y-12">
+        <header className="space-y-4">
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+            Contact Us
+          </h1>
+          <p className="text-slate-300 max-w-2xl">
+            Reach out for collaborations, volunteering, or general inquiries.
+          </p>
+        </header>
+
+        <section className="grid gap-10 md:grid-cols-2">
+          <form className="space-y-4" aria-label="Contact form">
+            <div>
+              <label className="block text-sm font-medium text-slate-200">
+                Name
+              </label>
+              <input
+                className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                type="text"
+                name="name"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-200">
+                Email
+              </label>
+              <input
+                className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                type="email"
+                name="email"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-200">
+                Phone
+              </label>
+              <input
+                className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                type="tel"
+                name="phone"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-200">
+                Message
+              </label>
+              <textarea
+                className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                name="message"
+                rows={4}
+              />
+            </div>
+            <button
+              type="submit"
+              className="inline-flex items-center rounded-full bg-emerald-500 px-6 py-3 text-sm font-medium text-slate-950 hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            >
+              Send Message
+            </button>
+          </form>
+
+          <div className="space-y-6">
+            <section className="space-y-2">
+              <h2 className="text-lg font-semibold">Contact Details</h2>
+              <p className="text-slate-300">Phone: +91-XXXXXXXXXX</p>
+              <p className="text-slate-300">Email: info@psbsbhandara.org</p>
+              <p className="text-slate-300">
+                Address: PSBS Bhandara Office, Bhandara, Maharashtra, India.
+              </p>
+            </section>
+
+            <section className="space-y-2">
+              <h2 className="text-lg font-semibold">Location Map</h2>
+              <div className="h-40 rounded-xl border border-slate-700 bg-slate-900 flex items-center justify-center text-slate-400 text-sm">
+                Google Maps placeholder
+              </div>
+            </section>
+
+            <section className="space-y-2">
+              <h2 className="text-lg font-semibold">Social Media</h2>
+              <p className="text-slate-300">
+                Icons and links for Facebook, Instagram, and other platforms will go here.
+              </p>
+            </section>
+          </div>
+        </section>
+      </div>
+    </div>
+  )
+}

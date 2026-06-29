@@ -1,0 +1,8 @@
+node_modules
+.output
+.vinxi
+.tanstack
+dist
+.DS_Store
+*.zip
+*.log

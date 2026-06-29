@@ -1,0 +1,94 @@
+===== src/routes/project-t.tsx =====
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/project')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  return <div>Hello "/project"!</div>
+}
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/projects')({
+  component: ProjectsPage,
+})
+
+type Project = {
+  title: string
+  imageAlt: string
+  summary: string
+  impact: string
+}
+
+const projects: Project[] = [
+  {
+    title: 'Tree Plantation',
+    imageAlt: 'Tree plantation activity',
+    summary: 'Community-driven tree planting drives across Bhandara.',
+    impact: 'Increasing green cover and improving local biodiversity.',
+  },
+  {
+    title: 'Wildlife Rescue',
+    imageAlt: 'Wildlife rescue operation',
+    summary: 'Rapid response for injured and displaced wildlife.',
+    impact: 'Reducing human-wildlife conflict and saving individual animals.',
+  },
+  {
+    title: 'Environmental Awareness',
+    imageAlt: 'Awareness session',
+    summary: 'Workshops and campaigns for schools and communities.',
+    impact: 'Building long-term environmental stewardship.',
+  },
+  {
+    title: 'Habitat Restoration',
+    imageAlt: 'Habitat restoration work',
+    summary: 'Restoring degraded forest and wetland habitats.',
+    impact: 'Supporting healthier ecosystems for wildlife.',
+  },
+  {
+    title: 'River Conservation',
+    imageAlt: 'River conservation activity',
+    summary: 'Protecting rivers and water bodies in the region.',
+    impact: 'Improving water quality and aquatic biodiversity.',
+  },
+]
+
+function ProjectsPage() {
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <div className="mx-auto max-w-5xl px-4 py-16 space-y-12">
+        <header className="space-y-4">
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+            Our Projects
+          </h1>
+          <p className="text-slate-300 max-w-2xl">
+            Explore key conservation and community projects led by PSBS Bhandara.
+          </p>
+        </header>
+
+        <section className="grid gap-8 md:grid-cols-2">
+          {projects.map((project) => (
+            <article
+              key={project.title}
+              className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-lg"
+            >
+              <h2 className="text-xl font-semibold mb-2">{project.title}</h2>
+              <p className="text-slate-300 mb-3">{project.summary}</p>
+              <p className="text-sm text-slate-400 mb-4">
+                <span className="font-semibold text-slate-200">Impact: </span>
+                {project.impact}
+              </p>
+              <button
+                type="button"
+                className="inline-flex items-center rounded-full bg-emerald-500 px-4 py-2 text-sm font-medium text-slate-950 hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+              >
+                Read More
+              </button>
+            </article>
+          ))}
+        </section>
+      </div>
+    </div>
+  )
+}

@@ -1,0 +1,140 @@
+import { Reveal } from "@/components/effects/Reveal";
+import { useState } from "react";
+import {
+  ArrowRight,
+  HandHelping,
+  Handshake,
+  HeartHandshake,
+} from "lucide-react";
+import canopy from "@/assets/canopy.jpg";
+
+const paths = [
+  {
+    id: "volunteer",
+    icon: HandHelping,
+    title: "Volunteer",
+    body: "Walk with us. Plant. Teach. Patrol.",
+  },
+  {
+    id: "collaborate",
+    icon: Handshake,
+    title: "Collaborate",
+    body: "Research, schools, institutions, brands.",
+  },
+  {
+    id: "donate",
+    icon: HeartHandshake,
+    title: "Donate",
+    body: "Every rupee becomes roots, leaves, lives.",
+  },
+];
+
+export function Join() {
+  const [active, setActive] = useState("volunteer");
+  return (
+    <section id="join" className="relative overflow-hidden py-32 md:py-44">
+      <div className="absolute inset-0 opacity-25">
+        <img
+          src={canopy}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          width={1920}
+          height={1080}
+          className="h-full w-full object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, var(--ink) 0%, transparent 30%, transparent 70%, var(--ink) 100%)",
+          }}
+        />
+      </div>
+      <div className="relative mx-auto max-w-[1500px] px-6 md:px-12">
+        <Reveal>
+          <div className="flex items-center gap-4">
+            <span className="h-px w-10 bg-gold/60" />
+            <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">
+              Join the Mission
+            </span>
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <h2 className="mt-8 max-w-4xl font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.02] text-fog">
+            Become part of the{" "}
+            <em className="text-gold-gradient not-italic">forest</em>.
+          </h2>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <p className="mt-6 max-w-xl text-fog/55">
+            Three paths. One canopy. Choose where you walk with us.
+          </p>
+        </Reveal>
+
+        <div className="mt-16 grid gap-5 md:grid-cols-3">
+          {paths.map((p, i) => {
+            const isActive = active === p.id;
+            return (
+              <Reveal key={p.id} delay={i * 0.08}>
+                <button
+                  onClick={() => setActive(p.id)}
+                  className={`group relative w-full overflow-hidden rounded-3xl border p-8 text-left transition duration-500 ${isActive ? "border-gold/60 bg-canopy/70" : "border-white/[0.06] bg-canopy/30 hover:border-gold/30"}`}
+                  style={isActive ? { boxShadow: "var(--shadow-glow)" } : {}}
+                >
+                  <p.icon
+                    className={`h-7 w-7 transition ${isActive ? "text-gold" : "text-fog/60"}`}
+                  />
+                  <h3 className="mt-6 font-display text-3xl text-fog">
+                    {p.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-fog/60">{p.body}</p>
+                  <span
+                    className={`mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] transition ${isActive ? "text-gold" : "text-fog/40"}`}
+                  >
+                    {isActive ? "Selected" : "Choose"}
+                    <ArrowRight className="h-3 w-3" />
+                  </span>
+                </button>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        <Reveal delay={0.3}>
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="mt-12 glass-card flex flex-col gap-4 rounded-3xl p-6 md:flex-row md:items-center"
+          >
+            <div className="flex flex-1 flex-col gap-3 md:flex-row">
+              <input
+                required
+                placeholder="Your name"
+                className="flex-1 rounded-xl border border-white/[0.08] bg-ink/40 px-5 py-4 text-sm text-fog placeholder:text-fog/40 focus:border-gold/40 focus:outline-none"
+              />
+              <input
+                required
+                type="email"
+                placeholder="Email"
+                className="flex-1 rounded-xl border border-white/[0.08] bg-ink/40 px-5 py-4 text-sm text-fog placeholder:text-fog/40 focus:border-gold/40 focus:outline-none"
+              />
+            </div>
+            <button
+              className="group inline-flex items-center justify-center gap-3 rounded-xl px-7 py-4 text-sm font-medium text-ink transition hover:translate-y-[-2px]"
+              style={{
+                background: "var(--gradient-gold)",
+                boxShadow: "var(--shadow-glow)",
+              }}
+            >
+              Send my pledge
+              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+            </button>
+          </form>
+        </Reveal>
+        <p className="mt-4 text-xs text-fog/40">
+          You're joining as <span className="text-gold/80">{active}</span>.
+        </p>
+      </div>
+    </section>
+  );
+}

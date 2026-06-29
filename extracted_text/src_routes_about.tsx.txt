@@ -1,0 +1,58 @@
+===== src/routes/about.tsx =====
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/about')({
+  component: AboutPage,
+})
+
+function AboutPage() {
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <div className="mx-auto max-w-5xl px-4 py-16 space-y-12">
+        <header className="space-y-4">
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+            About PSBS Bhandara
+          </h1>
+          <p className="text-slate-300 max-w-2xl">
+            This page will tell the story of the organization – overview, vision, mission, history, founder, team, values, and partners.
+          </p>
+        </header>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Vision & Mission</h2>
+          <p className="text-slate-300">
+            Add your vision and mission statements here. We will refine this later.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Objectives</h2>
+          <p className="text-slate-300">
+            List the key objectives of PSBS Bhandara here.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">History & Timeline</h2>
+          <p className="text-slate-300">
+            Briefly describe how the organization started and important milestones.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Founder & Team</h2>
+          <p className="text-slate-300">
+            Add information about the founder and core team members.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Values & Partners</h2>
+          <p className="text-slate-300">
+            Describe the core values and list partners (or placeholders for now).
+          </p>
+        </section>
+      </div>
+    </div>
+  )
+}

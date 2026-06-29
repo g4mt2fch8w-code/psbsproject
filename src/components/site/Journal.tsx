@@ -1,0 +1,101 @@
+import { Reveal } from "@/components/effects/Reveal";
+import j1 from "@/assets/journal-1.jpg";
+import j2 from "@/assets/journal-2.jpg";
+import j3 from "@/assets/journal-3.jpg";
+import { ArrowUpRight } from "lucide-react";
+
+const entries = [
+  {
+    img: j1,
+    tag: "Field Report",
+    date: "Mar 14, 2025",
+    title: "Tracking the Ghost of Nagzira",
+    body: "Four nights, twelve cameras, and a single pugmark in the wet clay. Tigress N-7 has returned.",
+  },
+  {
+    img: j2,
+    tag: "Community",
+    date: "Feb 02, 2025",
+    title: "The Children of Mendha Village",
+    body: "A school of 87 children planted 1,200 native saplings — and adopted them, by name, like family.",
+  },
+  {
+    img: j3,
+    tag: "Research",
+    date: "Jan 20, 2025",
+    title: "Hornbill Census, Koka Sanctuary",
+    body: "Dawn surveys reveal a 14% rise in nesting pairs — the canopy is healing, branch by branch.",
+  },
+];
+
+export function Journal() {
+  return (
+    <section id="journal" className="relative py-32 md:py-44">
+      <div className="mx-auto max-w-[1500px] px-6 md:px-12">
+        <div className="flex items-end justify-between">
+          <div>
+            <Reveal>
+              <div className="flex items-center gap-4">
+                <span className="h-px w-10 bg-gold/60" />
+                <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">
+                  Field Journal
+                </span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="mt-8 font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.02] text-fog">
+                Dispatches from the{" "}
+                <em className="text-gold-gradient not-italic">wild</em>.
+              </h2>
+            </Reveal>
+          </div>
+          <Reveal delay={0.2}>
+            <a
+              href="#"
+              className="story-link hidden text-sm text-gold/90 md:inline-block"
+            >
+              Read all reports →
+            </a>
+          </Reveal>
+        </div>
+
+        <div className="mt-16 grid gap-6 md:grid-cols-3">
+          {entries.map((e, i) => (
+            <Reveal key={e.title} delay={i * 0.1}>
+              <a href="#" className="group block">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/[0.06]">
+                  <img
+                    src={e.img}
+                    alt={e.title}
+                    loading="lazy"
+                    width={1280}
+                    height={960}
+                    className="absolute inset-0 h-full w-full object-cover transition duration-[1.4s] group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/30 to-transparent" />
+                  <div className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-ink/60 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-gold/90 backdrop-blur">
+                    {e.tag}
+                  </div>
+                  <div className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-ink/40 text-fog/80 backdrop-blur transition group-hover:border-gold group-hover:text-gold">
+                    <ArrowUpRight className="h-4 w-4" />
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 p-6">
+                    <div className="text-[10px] uppercase tracking-[0.3em] text-fog/50">
+                      {e.date}
+                    </div>
+                    <h3 className="mt-2 font-display text-2xl text-fog">
+                      {e.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-fog/65">
+                      {e.body}
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

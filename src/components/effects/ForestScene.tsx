@@ -1,0 +1,71 @@
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useMemo, useRef } from "react";
+import * as THREE from "three";
+
+function ParticleField() {
+  const ref = useRef<THREE.Points>(null);
+  const { positions, count } = useMemo(() => {
+    const count = 1200;
+    const arr = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      arr[i * 3 + 0] = (Math.random() - 0.5) * 30;
+      arr[i * 3 + 1] = (Math.random() - 0.5) * 18;
+      arr[i * 3 + 2] = (Math.random() - 0.5) * 20;
+    }
+    return { positions: arr, count };
+  }, []);
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    if (ref.current) {
+      ref.current.rotation.y = t * 0.02;
+      ref.current.rotation.x = Math.sin(t * 0.1) * 0.05;
+    }
+  });
+  return (
+    <points ref={ref}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          args={[positions, 3]}
+          count={count}
+        />
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.04}
+        sizeAttenuation
+        color="#F0D87A"
+        transparent
+        opacity={0.55}
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+      />
+    </points>
+  );
+}
+
+function CameraDrift() {
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    state.camera.position.x = Math.sin(t * 0.15) * 0.6;
+    state.camera.position.y = Math.cos(t * 0.1) * 0.3;
+    state.camera.lookAt(0, 0, 0);
+  });
+  return null;
+}
+
+export function ForestScene() {
+  return (
+    <Canvas
+      camera={{ position: [0, 0, 8], fov: 60 }}
+      dpr={[1, 1.5]}
+      gl={{ antialias: true, alpha: true }}
+      className="!absolute inset-0"
+    >
+      <ambientLight intensity={0.4} />
+      <pointLight position={[0, 4, 4]} intensity={2} color="#C9A13B" />
+      <ParticleField />
+      <CameraDrift />
+      <fog attach="fog" args={["#050505", 6, 18]} />
+    </Canvas>
+  );
+}

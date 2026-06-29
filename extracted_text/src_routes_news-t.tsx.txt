@@ -1,0 +1,73 @@
+===== src/routes/news-t.tsx =====
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/news-t')({
+  component: NewsPage,
+})
+
+type NewsItem = {
+  title: string
+  date: string
+  category: string
+  description: string
+}
+
+const newsItems: NewsItem[] = [
+  {
+    title: 'Tree Plantation Drive 2024',
+    date: '2024-07-15',
+    category: 'Projects',
+    description: 'Hundreds of saplings planted with community participation.',
+  },
+  {
+    title: 'Wildlife Rescue Training',
+    date: '2024-09-02',
+    category: 'Training',
+    description: 'Capacity building workshop for local volunteers.',
+  },
+  {
+    title: 'Wetland Awareness Campaign',
+    date: '2025-01-20',
+    category: 'Awareness',
+    description: 'Engaging schools in wetland conservation activities.',
+  },
+]
+
+function NewsPage() {
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <div className="mx-auto max-w-5xl px-4 py-16 space-y-12">
+        <header className="space-y-4">
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+            News & Journal
+          </h1>
+          <p className="text-slate-300 max-w-2xl">
+            Updates, stories, and journal entries from the field.
+          </p>
+        </header>
+
+        <section className="space-y-6">
+          {newsItems.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-lg"
+            >
+              <div className="flex items-center justify-between mb-2 text-sm text-slate-400">
+                <span>{item.date}</span>
+                <span className="uppercase tracking-wide">{item.category}</span>
+              </div>
+              <h2 className="text-xl font-semibold mb-2">{item.title}</h2>
+              <p className="text-slate-300 mb-4">{item.description}</p>
+              <button
+                type="button"
+                className="inline-flex items-center rounded-full bg-emerald-500 px-4 py-2 text-sm font-medium text-slate-950 hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+              >
+                Read More
+              </button>
+            </article>
+          ))}
+        </section>
+      </div>
+    </div>
+  )
+}

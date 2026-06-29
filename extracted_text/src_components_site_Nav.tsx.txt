@@ -1,0 +1,59 @@
+===== src/components/site/Nav.tsx =====
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Sparkles, Leaf } from "lucide-react";
+
+const links = [
+  { label: "Mission", href: "#mission" },
+  { label: "Wildlife", href: "#wildlife" },
+  { label: "Impact", href: "#impact" },
+  { label: "Forests", href: "#forests" },
+  { label: "Journal", href: "#journal" },
+  { label: "Join", href: "#join" },
+];
+
+export function Nav() {
+  const { scrollY } = useScroll();
+  const bg = useTransform(scrollY, [0, 200], ["rgba(5,5,5,0)", "rgba(5,5,5,0.7)"]);
+  const blur = useTransform(scrollY, [0, 200], ["blur(0px)", "blur(16px)"]);
+
+  return (
+    <motion.header
+      style={{ backgroundColor: bg, backdropFilter: blur }}
+      className="fixed inset-x-0 top-0 z-50 border-b border-white/0"
+    >
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-12">
+        <a href="#top" className="group flex items-center gap-3">
+          <span className="relative grid h-11 w-11 place-items-center rounded-full border border-emerald/30 bg-canopy/60">
+            <Leaf className="h-5 w-5 text-emerald" />
+            <span className="absolute inset-0 rounded-full opacity-0 transition group-hover:opacity-100" style={{ boxShadow: "var(--shadow-emerald)" }} />
+          </span>
+          <span className="leading-tight">
+            <span className="block font-display text-lg tracking-wide text-fog">PSBS</span>
+            <span className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Bhandara · India</span>
+          </span>
+        </a>
+
+        <nav className="hidden items-center gap-9 md:flex">
+          {links.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              className="story-link text-sm tracking-wide text-fog/80 transition hover:text-fog"
+            >
+              {l.label}
+            </a>
+          ))}
+        </nav>
+
+        <a
+          href="#join"
+          className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-5 py-2.5 text-sm font-medium text-ink transition"
+          style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-glow)" }}
+        >
+          <Sparkles className="h-4 w-4" />
+          Join Mission
+        </a>
+      </div>
+    </motion.header>
+  );
+}

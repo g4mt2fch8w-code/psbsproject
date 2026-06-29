@@ -1,0 +1,100 @@
+===== src/components/site/Forests.tsx =====
+import { Reveal } from "@/components/effects/Reveal";
+import canopy from "@/assets/canopy.jpg";
+
+const reserves = [
+  { name: "Navegaon-Nagzira Tiger Reserve", area: "653.67 km²", x: 22, y: 38 },
+  { name: "Koka WLS", area: "92.34 km²", x: 38, y: 28 },
+  { name: "Umred-Karhandla", area: "195.68 km²", x: 56, y: 55 },
+  { name: "Bhandara Territorial Forests", area: "1,343 km²", x: 46, y: 72 },
+  { name: "Bramhapuri Forest Division", area: "1200 km²", x: 70, y: 42 },
+  { name: "Gosikhurd Wetlands", area: "189 km² (SURROUNDING AREA)", x: 82, y: 65 },
+{ name: "Tadoba-Andhari Tiger Reserve", area: "~ 1700 km²", x: 80, y: 30 },
+{ name: "Mogarkasa Conservation Reserve", area: "103.92 km²", x: 30, y: 40 },
+{ name: "Sillari & Chorbahuli", area: "250 + 65 km²", x: 40, y: 35 },
+{ name: "Total", area: "5688.69 km²", x: 35, y: 30 },
+];
+
+export function Forests() {
+  return (
+    <section id="forests" className="relative overflow-hidden py-32 md:py-44">
+      <div className="absolute inset-0 opacity-20">
+        <img src={canopy} alt="" aria-hidden loading="lazy" width={1920} height={1080} className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-ink/80" />
+      </div>
+
+      <div className="relative mx-auto max-w-[1500px] px-6 md:px-12">
+        <Reveal>
+          <div className="flex items-center gap-4">
+            <span className="h-px w-10 bg-gold/60" />
+            <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">Living Geography</span>
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <h2 className="mt-8 max-w-4xl font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.02] text-fog">
+            The forests we <em className="text-gold-gradient not-italic">walk</em>.
+          </h2>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <p className="mt-6 max-w-xl text-fog/55">
+            Six landscapes across Vidarbha — each one a story, a refuge, a future.
+          </p>
+        </Reveal>
+
+        <div className="mt-16 grid gap-10 lg:grid-cols-12">
+          {/* Map */}
+          <Reveal delay={0.2} className="lg:col-span-7">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/[0.06] bg-canopy/40 backdrop-blur">
+              {/* topographic rings */}
+              <svg viewBox="0 0 100 75" className="absolute inset-0 h-full w-full opacity-30">
+                {[...Array(20)].map((_, i) => (
+                  <path key={i} d={`M0 ${5 + i * 4} Q 50 ${i * 3 + (i % 2 ? 8 : -4)} 100 ${10 + i * 3.5}`} fill="none" stroke="url(#g1)" strokeWidth="0.15" />
+                ))}
+                <defs>
+                  <linearGradient id="g1" x1="0" x2="1">
+                    <stop offset="0" stopColor="#2E7D32" stopOpacity="0.6" />
+                    <stop offset="1" stopColor="#C9A13B" stopOpacity="0.3" />
+                  </linearGradient>
+                </defs>
+              </svg>
+
+              {/* connection lines */}
+              <svg viewBox="0 0 100 75" className="absolute inset-0 h-full w-full">
+                {reserves.map((r, i) =>
+                  reserves.slice(i + 1).map((r2, j) => (
+                    <line key={`${i}-${j}`} x1={r.x} y1={r.y * 0.75} x2={r2.x} y2={r2.y * 0.75}
+                      stroke="rgba(201,161,59,0.15)" strokeWidth="0.1" strokeDasharray="0.6 0.6" />
+                  ))
+                )}
+              </svg>
+
+              {reserves.map((r) => (
+                <div key={r.name} className="group absolute -translate-x-1/2 -translate-y-1/2" style={{ left: `${r.x}%`, top: `${r.y}%` }}>
+                  <span className="block h-3 w-3 rounded-full bg-gold shadow-[0_0_24px_4px_rgba(201,161,59,0.55)] transition group-hover:scale-150" />
+                  <span className="absolute left-4 top-0 whitespace-nowrap rounded-full border border-gold/20 bg-ink/80 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-fog/80 opacity-0 backdrop-blur transition group-hover:opacity-100">
+                    {r.name}
+                  </span>
+                </div>
+              ))}
+              <span className="absolute bottom-4 left-5 text-[10px] uppercase tracking-[0.3em] text-fog/40">Vidarbha · Maharashtra</span>
+            </div>
+          </Reveal>
+
+          {/* List */}
+          <div className="lg:col-span-5">
+            <ul className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
+              {reserves.map((r, i) => (
+                <Reveal key={r.name} delay={i * 0.06}>
+                  <li className="group flex items-baseline justify-between gap-6 py-6 transition hover:pl-3">
+                    <span className="font-display text-2xl text-fog md:text-3xl">{r.name}</span>
+                    <span className="text-sm tracking-wide text-gold/80">{r.area}</span>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -4,6 +4,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import * as THREE from "three";
 import { Html } from "@react-three/drei";
+import { ClientOnly } from "../effects/ClientOnly";
 
 const reserves = [
   { name: "Navegaon-Nagzira Tiger Reserve", area: "653.67 km²", x: 22, y: 38 },
@@ -178,15 +179,17 @@ export function Forests() {
           {/* Map */}
           <Reveal delay={0.2} className="lg:col-span-7">
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/[0.06] bg-canopy/40 backdrop-blur">
-              <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
-                <ambientLight intensity={0.5} />
-                <pointLight
-                  position={[10, 10, 10]}
-                  intensity={1}
-                  color="#F0D87A"
-                />
-                <InteractiveMap />
-              </Canvas>
+              <ClientOnly>
+                <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
+                  <ambientLight intensity={0.5} />
+                  <pointLight
+                    position={[10, 10, 10]}
+                    intensity={1}
+                    color="#F0D87A"
+                  />
+                  <InteractiveMap />
+                </Canvas>
+              </ClientOnly>
               <span className="absolute bottom-4 left-5 text-[10px] uppercase tracking-[0.3em] text-fog/40">
                 Vidarbha · Maharashtra (Interactive 3D)
               </span>

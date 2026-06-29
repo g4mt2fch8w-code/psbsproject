@@ -1,5 +1,9 @@
 import { Reveal } from "@/components/effects/Reveal";
 import { motion } from "framer-motion";
+import { ForestGlobe } from "@/components/effects/ForestGlobe";
+import { ClientOnly } from "@/components/effects/ClientOnly";
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
 
 const growth = [12, 18, 22, 30, 36, 45, 58, 72, 88, 102, 124, 148, 168, 184];
 const wildlife = [
@@ -79,8 +83,20 @@ function AreaChart() {
 
 export function DataViz() {
   return (
-    <section className="relative overflow-hidden border-y border-white/[0.06] bg-canopy/30 py-32 md:py-44">
-      <div className="mx-auto max-w-[1500px] px-6 md:px-12">
+    <section id="dataviz" className="relative overflow-hidden border-y border-white/[0.06] bg-canopy/30 py-32 md:py-44">
+      {/* 3D Background */}
+      <div className="absolute inset-0 z-0">
+        <ClientOnly>
+          <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+            <Suspense fallback={null}>
+              <ForestGlobe />
+            </Suspense>
+          </Canvas>
+        </ClientOnly>
+        <div className="absolute inset-0 bg-ink/60 backdrop-blur-[2px]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-[1500px] px-6 md:px-12">
         <Reveal>
           <div className="flex items-center gap-4">
             <span className="h-px w-10 bg-gold/60" />

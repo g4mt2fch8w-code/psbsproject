@@ -16,12 +16,11 @@ All the files are plain text documents. You can open them in any code editor (li
 ## 🎨 1. How to Edit the Logo and Site Title
 
 ### To change the "PSBS" brand text:
-
 1. Open the file: `src/components/site/Nav.tsx`
 2. Search for the words: `PSBS` (around line 65)
 3. Change it to whatever you like.
 4. If you also want to change the subtext `"Bhandara · India"`, it is right below it on line 68. Change that text too!
-5. _Note: Remember to also change it in the footer by opening `src/components/site/Footer.tsx` and looking for `PSBS` (around line 10)._
+5. *Note: Remember to also change it in the footer by opening `src/components/site/Footer.tsx` and looking for `PSBS` (around line 10).*
 
 ---
 
@@ -72,7 +71,6 @@ These are the quote cards on the home page.
 There are two places where wildlife data is shown: the **Home page** and the dedicated **Wildlife page**.
 
 ### To change counts shown on the Home page:
-
 1. Open the file: `src/components/site/Wildlife.tsx`
 2. Scroll to lines 8 to 13. You will see a list of species:
    ```javascript
@@ -85,7 +83,6 @@ There are two places where wildlife data is shown: the **Home page** and the ded
 3. Change the `"38"` or `"210+"` inside the `count` section to your new numbers. You can also change the description text (`body`) right there!
 
 ### To change counts shown on the dedicated Wildlife page:
-
 1. Open the file: `src/routes/wildlife.tsx`
 2. Find the list at the top (lines 13 to 48) and change the `count` and descriptions there as well.
 
@@ -94,7 +91,6 @@ There are two places where wildlife data is shown: the **Home page** and the ded
 ## 🗺️ 5. How to Edit the Forests and Map Coordinates
 
 ### To change the reserves list or areas shown on the map:
-
 1. Open the file: `src/components/site/Forests.tsx`
 2. Search for `const reserves = [` near the top (line 4).
 3. You will see:
@@ -115,26 +111,22 @@ There are two places where wildlife data is shown: the **Home page** and the ded
 If you want to simplify the page or disable some of the complex animations:
 
 ### To turn off the Gold Cursor Glow:
-
 1. Open the file: `src/routes/index.tsx` (and any other route file like `about.tsx`)
 2. Find the line: `<CursorGlow />`
 3. Delete this line or comment it out by putting `{/*` and `*/}` around it, like:
    `{/* <CursorGlow /> */}`
 
 ### To turn off the Canvas Fireflies (drifting sparks):
-
 1. Open the file: `src/components/site/Hero.tsx`
 2. Find the line: `<Fireflies density={70} />` (around line 52)
 3. Comment it out or delete it.
 
 ### To turn off the 3D Particle Field in the Hero background:
-
 1. Open the file: `src/components/site/Hero.tsx`
 2. Find the line: `<ForestScene />` (around line 48)
 3. Comment it out or delete it.
 
 ### To turn off Smooth Scrolling (Lenis):
-
 1. Open the file: `src/routes/index.tsx` (and other pages)
 2. Find the line: `<SmoothScroll />`
 3. Delete or comment it out: `{/* <SmoothScroll /> */}`

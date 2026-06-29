@@ -1,6 +1,7 @@
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
+import { ClientOnly } from "./ClientOnly";
 
 function Leaves({ count = 40 }: { count?: number }) {
   const meshRef = useRef<THREE.InstancedMesh>(null);
@@ -60,11 +61,13 @@ function Leaves({ count = 40 }: { count?: number }) {
 export function FloatingNature() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0 opacity-40">
-      <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} color="#F0D87A" />
-        <Leaves count={30} />
-      </Canvas>
+      <ClientOnly>
+        <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} intensity={1} color="#F0D87A" />
+          <Leaves count={30} />
+        </Canvas>
+      </ClientOnly>
     </div>
   );
 }

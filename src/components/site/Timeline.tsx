@@ -85,15 +85,12 @@ export function Timeline() {
         <Reveal>
           <div className="flex items-center gap-4">
             <span className="h-px w-10 bg-gold/60" />
-            <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">
-              Our Journey
-            </span>
+            <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">Our Journey</span>
           </div>
         </Reveal>
         <Reveal delay={0.15}>
           <h2 className="mt-8 font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.02] text-fog">
-            A decade of roots{" "}
-            <em className="text-gold-gradient not-italic">and growth</em>.
+            A decade of roots <em className="text-gold-gradient not-italic">and growth</em>.
           </h2>
         </Reveal>
 
@@ -111,11 +108,7 @@ export function Timeline() {
                   initial={{ opacity: 0, y: 35 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{
-                    duration: 0.8,
-                    delay: i * 0.05,
-                    ease: "easeOut",
-                  }}
+                  transition={{ duration: 0.8, delay: i * 0.05, ease: "easeOut" }}
                   className="flex items-start w-full"
                 >
                   {/* Left column — year on even, body on odd */}

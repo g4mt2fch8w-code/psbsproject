@@ -37,21 +37,17 @@ export function Partners() {
         <Reveal>
           <div className="flex items-center gap-4">
             <span className="h-px w-10 bg-gold/60" />
-            <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">
-              Support Network
-            </span>
+            <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">Support Network</span>
           </div>
         </Reveal>
         <Reveal delay={0.15}>
           <h2 className="mt-8 font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.02] text-fog">
-            Allies in the{" "}
-            <em className="text-gold-gradient not-italic">canopy</em>.
+            Allies in the <em className="text-gold-gradient not-italic">canopy</em>.
           </h2>
         </Reveal>
         <Reveal delay={0.25}>
           <p className="mt-6 max-w-xl text-[color:var(--fog)]/55 leading-relaxed">
-            Conservation at scale requires many hands. These organizations walk
-            alongside us — in policy, science, funding, and fieldwork.
+            Conservation at scale requires many hands. These organizations walk alongside us — in policy, science, funding, and fieldwork.
           </p>
         </Reveal>
 

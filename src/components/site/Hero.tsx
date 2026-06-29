@@ -12,10 +12,12 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
-  const yText = useTransform(scrollYProgress, [0, 1], ["0%", "120%"]);
+  const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
+  const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "70%"]);
+  const yText = useTransform(scrollYProgress, [0, 1], ["0%", "140%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const rotateX = useTransform(scrollYProgress, [0, 1], [0, 15]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   return (
     <section
@@ -98,7 +100,7 @@ export function Hero() {
 
       {/* Content */}
       <motion.div
-        style={{ y: yText, opacity }}
+        style={{ y: yText, opacity, rotateX, scale, perspective: 1000 }}
         className="relative z-10 mx-auto flex h-full max-w-[1600px] flex-col justify-center px-6 md:px-12"
       >
         <motion.div

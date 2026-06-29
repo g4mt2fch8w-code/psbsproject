@@ -103,9 +103,17 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-14 max-w-[1500px] border-t border-white/[0.06] px-6 pt-6 text-xs text-fog/40 md:px-12">
-        © {new Date().getFullYear()} PSBS Bhandara · Built with reverence for
-        the wild.
+      <div className="mx-auto mt-14 flex max-w-[1500px] flex-col items-center justify-between gap-4 border-t border-white/[0.06] px-6 pt-6 text-xs text-fog/40 md:flex-row md:px-12">
+        <div>
+          © {new Date().getFullYear()} PSBS Bhandara · Built with reverence for
+          the wild.
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="h-px w-4 bg-gold/30" />
+          <span className="tracking-[0.2em]">
+            MADE BY <span className="text-gold/80">OMKAR PATIL BHOPLE</span>
+          </span>
+        </div>
       </div>
     </footer>
   );

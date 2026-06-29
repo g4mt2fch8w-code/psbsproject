@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SmoothScroll } from "@/components/effects/SmoothScroll";
 import { CursorGlow } from "@/components/effects/CursorGlow";
+import { FloatingNature } from "@/components/effects/FloatingNature";
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
 import { Mission } from "@/components/site/Mission";
@@ -43,6 +44,7 @@ function Index() {
     <main className="relative min-h-screen bg-ink text-foreground">
       <SmoothScroll />
       <CursorGlow />
+      <FloatingNature />
       <Nav />
       <Hero />
       <Mission />

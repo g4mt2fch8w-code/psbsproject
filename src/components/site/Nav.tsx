@@ -91,7 +91,7 @@ export function Nav() {
       isDark ? "rgba(7,20,11,0.65)" : "rgba(240,238,230,0.85)",
     ]
   );
-  
+
   const blur = useTransform(
     scrollY,
     [0, 120],
@@ -171,8 +171,8 @@ export function Nav() {
       {/* Floating Container */}
       <div className="fixed inset-x-0 top-4 z-50 flex justify-center px-4 md:px-8 pointer-events-none">
         <motion.header
-          style={{ 
-            backgroundColor: bg, 
+          style={{
+            backgroundColor: bg,
             backdropFilter: blur,
             boxShadow: shadow,
             paddingTop: paddingY,

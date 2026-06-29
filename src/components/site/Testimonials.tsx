@@ -5,22 +5,26 @@ import { Reveal } from "@/components/effects/Reveal";
 
 const testimonials = [
   {
-    quote: "Walking with PSBS in the pre-dawn forest near Nagzira changed me. You hear a tiger breathe and you understand why this work cannot stop.",
+    quote:
+      "Walking with PSBS in the pre-dawn forest near Nagzira changed me. You hear a tiger breathe and you understand why this work cannot stop.",
     name: "Priya Deshpande",
     role: "Field Volunteer, Nagpur",
   },
   {
-    quote: "After our village joined the patrol program, a tigress pugmark appeared within our boundary. Our children were prouder of that than anything else.",
+    quote:
+      "After our village joined the patrol program, a tigress pugmark appeared within our boundary. Our children were prouder of that than anything else.",
     name: "Ramrao Bhondwe",
     role: "Gram Sabha Member, Mendha",
   },
   {
-    quote: "The tree I planted in 2017 is now taller than my house. My son visits it every day like a friend. That is what PSBS gave us: a living legacy.",
+    quote:
+      "The tree I planted in 2017 is now taller than my house. My son visits it every day like a friend. That is what PSBS gave us: a living legacy.",
     name: "Sunita Meshram",
     role: "Community Member, Tumsar",
   },
   {
-    quote: "As a researcher I have worked with many NGOs. PSBS stands apart: their data is rigorous, their heart is real, and their forests are evidence.",
+    quote:
+      "As a researcher I have worked with many NGOs. PSBS stands apart: their data is rigorous, their heart is real, and their forests are evidence.",
     name: "Dr. Suresh Rane",
     role: "Wildlife Biologist, Pune",
   },
@@ -33,12 +37,15 @@ export function Testimonials() {
         <Reveal>
           <div className="flex items-center gap-4">
             <span className="h-px w-10 bg-gold/60" />
-            <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">Voices from the Forest</span>
+            <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">
+              Voices from the Forest
+            </span>
           </div>
         </Reveal>
         <Reveal delay={0.15}>
           <h2 className="mt-8 font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.02] text-fog">
-            What the forest <em className="text-gold-gradient not-italic">means</em> to them.
+            What the forest{" "}
+            <em className="text-gold-gradient not-italic">means</em> to them.
           </h2>
         </Reveal>
 

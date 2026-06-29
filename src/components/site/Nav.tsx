@@ -4,7 +4,19 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
-import { Leaf, Sun, Moon, Menu, X, Sparkles, Search, Home, ArrowRight, FileText, HelpCircle } from "lucide-react";
+import {
+  Leaf,
+  Sun,
+  Moon,
+  Menu,
+  X,
+  Sparkles,
+  Search,
+  Home,
+  ArrowRight,
+  FileText,
+  HelpCircle,
+} from "lucide-react";
 import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "@/hooks/useTheme";
@@ -38,37 +50,171 @@ interface SearchItem {
 
 const searchIndex: SearchItem[] = [
   // Pages
-  { title: "Home Page", category: "Pages", description: "Main landing page, mission timeline, impact counters, forests map, and volunteer signups.", href: "/" },
-  { title: "About Us", category: "Pages", description: "Our history, founders, values, partners, and team members.", href: "/about" },
-  { title: "Wildlife Encyclopedia", category: "Pages", description: "Bengal Tiger, Great Indian Hornbill, Leopard, and other reserve inhabitants.", href: "/wildlife" },
-  { title: "Forests & Geography", category: "Pages", description: "Maps and divisional profiles of Vidarbha's reserves.", href: "/forests" },
-  { title: "Conservation Projects", category: "Pages", description: "Ongoing work: corridor restoration, community patrols, and wetland advocacy.", href: "/projects" },
-  { title: "Field Journal & News", category: "Pages", description: "Latest news, animal sightings, and community updates.", href: "/news" },
-  { title: "Photo & Video Gallery", category: "Pages", description: "Visual archives of field surveys, camera traps, and forest landscapes.", href: "/gallery" },
-  { title: "Volunteer Portal", category: "Pages", description: "How to register, benefits of joining, activities, and FAQs.", href: "/volunteer" },
-  { title: "Donate & Support", category: "Pages", description: "Support PSBS through secure options, custom tiers, and bank transfers.", href: "/donate" },
-  { title: "Contact Us", category: "Pages", description: "Get in touch for volunteering, research collaborations, or support.", href: "/contact" },
+  {
+    title: "Home Page",
+    category: "Pages",
+    description:
+      "Main landing page, mission timeline, impact counters, forests map, and volunteer signups.",
+    href: "/",
+  },
+  {
+    title: "About Us",
+    category: "Pages",
+    description: "Our history, founders, values, partners, and team members.",
+    href: "/about",
+  },
+  {
+    title: "Wildlife Encyclopedia",
+    category: "Pages",
+    description:
+      "Bengal Tiger, Great Indian Hornbill, Leopard, and other reserve inhabitants.",
+    href: "/wildlife",
+  },
+  {
+    title: "Forests & Geography",
+    category: "Pages",
+    description: "Maps and divisional profiles of Vidarbha's reserves.",
+    href: "/forests",
+  },
+  {
+    title: "Conservation Projects",
+    category: "Pages",
+    description:
+      "Ongoing work: corridor restoration, community patrols, and wetland advocacy.",
+    href: "/projects",
+  },
+  {
+    title: "Field Journal & News",
+    category: "Pages",
+    description: "Latest news, animal sightings, and community updates.",
+    href: "/news",
+  },
+  {
+    title: "Photo & Video Gallery",
+    category: "Pages",
+    description:
+      "Visual archives of field surveys, camera traps, and forest landscapes.",
+    href: "/gallery",
+  },
+  {
+    title: "Volunteer Portal",
+    category: "Pages",
+    description: "How to register, benefits of joining, activities, and FAQs.",
+    href: "/volunteer",
+  },
+  {
+    title: "Donate & Support",
+    category: "Pages",
+    description:
+      "Support PSBS through secure options, custom tiers, and bank transfers.",
+    href: "/donate",
+  },
+  {
+    title: "Contact Us",
+    category: "Pages",
+    description:
+      "Get in touch for volunteering, research collaborations, or support.",
+    href: "/contact",
+  },
 
   // Wildlife
-  { title: "Bengal Tiger (Panthera tigris)", category: "Wildlife", description: "Endangered apex predator. 38+ individuals documented in corridors.", href: "/wildlife" },
-  { title: "Great Indian Hornbill (Buceros bicornis)", category: "Wildlife", description: "Vulnerable canopy regenerator. 210+ individuals in Koka Sanctuary.", href: "/wildlife" },
-  { title: "Indian Leopard (Panthera pardus)", category: "Wildlife", description: "Vulnerable adaptable carnivore. 22 individuals documented.", href: "/wildlife" },
-  { title: "Spotted Deer / Chital (Axis axis)", category: "Wildlife", description: "Key prey species. 4,200+ individuals documented in censuses.", href: "/wildlife" },
-  { title: "Sloth Bear (Melursus ursinus)", category: "Wildlife", description: "Vulnerable insectivore found across Bhandara forests.", href: "/wildlife" },
-  { title: "Dhole / Wild Dog (Cuon alpinus)", category: "Wildlife", description: "Endangered pack hunter recently re-sighted.", href: "/wildlife" },
-  { title: "Gosikhurd Wetlands Otter", category: "Wildlife", description: "Smooth-coated Otters documented in dam buffer zones.", href: "/wildlife" },
+  {
+    title: "Bengal Tiger (Panthera tigris)",
+    category: "Wildlife",
+    description:
+      "Endangered apex predator. 38+ individuals documented in corridors.",
+    href: "/wildlife",
+  },
+  {
+    title: "Great Indian Hornbill (Buceros bicornis)",
+    category: "Wildlife",
+    description:
+      "Vulnerable canopy regenerator. 210+ individuals in Koka Sanctuary.",
+    href: "/wildlife",
+  },
+  {
+    title: "Indian Leopard (Panthera pardus)",
+    category: "Wildlife",
+    description: "Vulnerable adaptable carnivore. 22 individuals documented.",
+    href: "/wildlife",
+  },
+  {
+    title: "Spotted Deer / Chital (Axis axis)",
+    category: "Wildlife",
+    description: "Key prey species. 4,200+ individuals documented in censuses.",
+    href: "/wildlife",
+  },
+  {
+    title: "Sloth Bear (Melursus ursinus)",
+    category: "Wildlife",
+    description: "Vulnerable insectivore found across Bhandara forests.",
+    href: "/wildlife",
+  },
+  {
+    title: "Dhole / Wild Dog (Cuon alpinus)",
+    category: "Wildlife",
+    description: "Endangered pack hunter recently re-sighted.",
+    href: "/wildlife",
+  },
+  {
+    title: "Gosikhurd Wetlands Otter",
+    category: "Wildlife",
+    description: "Smooth-coated Otters documented in dam buffer zones.",
+    href: "/wildlife",
+  },
 
   // Projects
-  { title: "Corridor Restoration Initiative", category: "Projects", description: "Replanting Navegaon-Nagzira corridor (47k trees planted).", href: "/projects" },
-  { title: "Koka Hornbill Project", category: "Projects", description: "Monitoring 34 active nesting sites and installing nest boxes.", href: "/projects" },
-  { title: "Gosikhurd Wetland Declaration", category: "Projects", description: "Lobbying for protected status of 189 km² area.", href: "/projects" },
-  { title: "Village Conservation Patrol", category: "Projects", description: "Community-led de facto forest wardens in 132 villages.", href: "/projects" },
-  { title: "School Forest Program", category: "Projects", description: "8,000 students tending native school forests.", href: "/projects" },
+  {
+    title: "Corridor Restoration Initiative",
+    category: "Projects",
+    description: "Replanting Navegaon-Nagzira corridor (47k trees planted).",
+    href: "/projects",
+  },
+  {
+    title: "Koka Hornbill Project",
+    category: "Projects",
+    description:
+      "Monitoring 34 active nesting sites and installing nest boxes.",
+    href: "/projects",
+  },
+  {
+    title: "Gosikhurd Wetland Declaration",
+    category: "Projects",
+    description: "Lobbying for protected status of 189 km² area.",
+    href: "/projects",
+  },
+  {
+    title: "Village Conservation Patrol",
+    category: "Projects",
+    description: "Community-led de facto forest wardens in 132 villages.",
+    href: "/projects",
+  },
+  {
+    title: "School Forest Program",
+    category: "Projects",
+    description: "8,000 students tending native school forests.",
+    href: "/projects",
+  },
 
   // News
-  { title: "Tracking Tigress N-7", category: "News", description: "Tigress N-7 returns with three cubs in Nagzira corridor.", href: "/news" },
-  { title: "Mendha Village School Tree Planting", category: "News", description: "87 school children plant and adopt 1,200 saplings.", href: "/news" },
-  { title: "Hornbill Nesting Success", category: "News", description: "Koka sanctuary records 14% rise in active hornbill nests.", href: "/news" },
+  {
+    title: "Tracking Tigress N-7",
+    category: "News",
+    description: "Tigress N-7 returns with three cubs in Nagzira corridor.",
+    href: "/news",
+  },
+  {
+    title: "Mendha Village School Tree Planting",
+    category: "News",
+    description: "87 school children plant and adopt 1,200 saplings.",
+    href: "/news",
+  },
+  {
+    title: "Hornbill Nesting Success",
+    category: "News",
+    description: "Koka sanctuary records 14% rise in active hornbill nests.",
+    href: "/news",
+  },
 ];
 
 export function Nav() {
@@ -89,29 +235,23 @@ export function Nav() {
     [
       isDark ? "rgba(15,15,15,0.4)" : "rgba(250,248,242,0.5)",
       isDark ? "rgba(7,20,11,0.65)" : "rgba(240,238,230,0.85)",
-    ]
+    ],
   );
-  
-  const blur = useTransform(
-    scrollY,
-    [0, 120],
-    ["blur(16px)", "blur(28px)"]
-  );
+
+  const blur = useTransform(scrollY, [0, 120], ["blur(16px)", "blur(28px)"]);
 
   const shadow = useTransform(
     scrollY,
     [0, 120],
     [
       "0 4px 20px -2px rgba(0,0,0,0.05)",
-      isDark ? "0 16px 40px -4px rgba(0,0,0,0.45)" : "0 16px 40px -4px rgba(0,0,0,0.08)",
-    ]
+      isDark
+        ? "0 16px 40px -4px rgba(0,0,0,0.45)"
+        : "0 16px 40px -4px rgba(0,0,0,0.08)",
+    ],
   );
 
-  const paddingY = useTransform(
-    scrollY,
-    [0, 120],
-    ["16px", "10px"]
-  );
+  const paddingY = useTransform(scrollY, [0, 120], ["16px", "10px"]);
 
   // Handle hotkeys (Cmd+K or Ctrl+K or '/' to search)
   useEffect(() => {
@@ -119,7 +259,11 @@ export function Nav() {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         setSearchOpen((prev) => !prev);
-      } else if (e.key === "/" && document.activeElement?.tagName !== "INPUT" && document.activeElement?.tagName !== "TEXTAREA") {
+      } else if (
+        e.key === "/" &&
+        document.activeElement?.tagName !== "INPUT" &&
+        document.activeElement?.tagName !== "TEXTAREA"
+      ) {
         e.preventDefault();
         setSearchOpen(true);
       }
@@ -147,7 +291,7 @@ export function Nav() {
         (item) =>
           item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
           item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          item.category.toLowerCase().includes(searchQuery.toLowerCase())
+          item.category.toLowerCase().includes(searchQuery.toLowerCase()),
       )
     : [];
 
@@ -171,8 +315,8 @@ export function Nav() {
       {/* Floating Container */}
       <div className="fixed inset-x-0 top-4 z-50 flex justify-center px-4 md:px-8 pointer-events-none">
         <motion.header
-          style={{ 
-            backgroundColor: bg, 
+          style={{
+            backgroundColor: bg,
             backdropFilter: blur,
             boxShadow: shadow,
             paddingTop: paddingY,
@@ -207,7 +351,9 @@ export function Nav() {
                 to={l.href as any}
                 className="relative text-sm tracking-wide text-fog/75 transition hover:text-fog [&.active]:text-gold group flex items-center gap-1.5"
               >
-                {l.label === "Home" && <Home className="h-3.5 w-3.5 opacity-60" />}
+                {l.label === "Home" && (
+                  <Home className="h-3.5 w-3.5 opacity-60" />
+                )}
                 {l.label}
                 <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
               </Link>
@@ -338,7 +484,11 @@ export function Nav() {
                           onClick={() => handleResultClick(p.href)}
                           className="flex items-center gap-3 p-3 rounded-xl border border-white/[0.04] bg-white/[0.02] text-left text-sm text-fog/80 hover:border-gold/30 hover:bg-gold/5 transition duration-300"
                         >
-                          {p.label === "Home" ? <Home className="h-4 w-4 text-gold/80" /> : <FileText className="h-4 w-4 text-emerald" />}
+                          {p.label === "Home" ? (
+                            <Home className="h-4 w-4 text-gold/80" />
+                          ) : (
+                            <FileText className="h-4 w-4 text-emerald" />
+                          )}
                           {p.label}
                         </button>
                       ))}
@@ -383,7 +533,8 @@ export function Nav() {
                       No matching records found for "{searchQuery}"
                     </p>
                     <p className="text-xs text-fog/40 max-w-xs mx-auto leading-relaxed">
-                      Try searching broader terms like "tiger", "planting", "horn", or check out suggested pages above.
+                      Try searching broader terms like "tiger", "planting",
+                      "horn", or check out suggested pages above.
                     </p>
                   </div>
                 )}
@@ -427,7 +578,9 @@ export function Nav() {
                       onClick={() => setMenuOpen(false)}
                       className="block py-3 font-display text-2xl text-fog/85 transition hover:text-gold [&.active]:text-gold flex items-center gap-2"
                     >
-                      {l.label === "Home" && <Home className="h-5 w-5 text-gold/60" />}
+                      {l.label === "Home" && (
+                        <Home className="h-5 w-5 text-gold/60" />
+                      )}
                       {l.label}
                     </Link>
                   </motion.div>

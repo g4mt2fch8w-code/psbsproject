@@ -3,7 +3,10 @@ import tiger from "@/assets/tiger.jpg";
 import hornbill from "@/assets/hornbill.jpg";
 import deer from "@/assets/deer.jpg";
 import leopard from "@/assets/leopard.jpg";
-import { useRef, type MouseEvent } from "react";
+import { useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import * as THREE from "three";
+import { Image } from "@react-three/drei";
 
 const species = [
   {
@@ -40,30 +43,105 @@ const species = [
   },
 ];
 
-function Tilt({ children }: { children: React.ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const handle = (e: MouseEvent<HTMLDivElement>) => {
-    const el = ref.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    el.style.transform = `perspective(1100px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-6px)`;
-  };
-  const reset = () => {
-    if (ref.current)
-      ref.current.style.transform =
-        "perspective(1100px) rotateY(0) rotateX(0) translateY(0)";
-  };
+function CardContent({ s, hovered }: { s: typeof species[0]; hovered: boolean }) {
+  const meshRef = useRef<THREE.Group>(null);
+
+  useFrame((state) => {
+    if (!meshRef.current) return;
+    const { x, y } = state.pointer;
+    if (hovered) {
+      meshRef.current.rotation.y = THREE.MathUtils.lerp(
+        meshRef.current.rotation.y,
+        x * 0.2,
+        0.1,
+      );
+      meshRef.current.rotation.x = THREE.MathUtils.lerp(
+        meshRef.current.rotation.x,
+        -y * 0.2,
+        0.1,
+      );
+      meshRef.current.position.z = THREE.MathUtils.lerp(
+        meshRef.current.position.z,
+        0.5,
+        0.1,
+      );
+    } else {
+      meshRef.current.rotation.y = THREE.MathUtils.lerp(
+        meshRef.current.rotation.y,
+        0,
+        0.1,
+      );
+      meshRef.current.rotation.x = THREE.MathUtils.lerp(
+        meshRef.current.rotation.x,
+        0,
+        0.1,
+      );
+      meshRef.current.position.z = THREE.MathUtils.lerp(
+        meshRef.current.position.z,
+        0,
+        0.1,
+      );
+    }
+  });
+
   return (
-    <div
-      ref={ref}
-      onMouseMove={handle}
-      onMouseLeave={reset}
-      className="transition-transform duration-300 will-change-transform"
+    <group ref={meshRef}>
+      <Image
+        url={s.img}
+        scale={[4, 5.5]}
+        grayscale={0}
+        transparent
+        opacity={0.8}
+      />
+      {/* Inner glow / depth effect */}
+      <mesh position={[0, 0, -0.01]}>
+        <planeGeometry args={[4.2, 5.7]} />
+        <meshStandardMaterial color="#050505" />
+      </mesh>
+    </group>
+  );
+}
+
+function Wildlife3DCard({ s }: { s: typeof species[0] }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <article
+      className="group relative h-[520px] overflow-hidden rounded-3xl border border-white/[0.06] bg-ink"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
-      {children}
-    </div>
+      <div className="absolute inset-0 z-0">
+        <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+          <ambientLight intensity={0.7} />
+          <CardContent s={s} hovered={hovered} />
+        </Canvas>
+      </div>
+
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
+
+      <div className="pointer-events-none absolute left-5 top-5 flex items-center gap-2 rounded-full border border-gold/30 bg-ink/60 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-gold/90 backdrop-blur">
+        {s.status}
+      </div>
+      <div className="pointer-events-none absolute right-5 top-5 text-right">
+        <div className="font-display text-3xl text-glow text-fog">
+          {s.count}
+        </div>
+        <div className="text-[9px] uppercase tracking-[0.3em] text-fog/50">
+          in our reserves
+        </div>
+      </div>
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6">
+        <div className="text-[10px] italic tracking-wide text-gold/70">
+          {s.latin}
+        </div>
+        <h3 className="mt-1 font-display text-3xl text-fog">{s.name}</h3>
+        <p className="mt-2 max-h-0 overflow-hidden text-sm leading-relaxed text-fog/70 opacity-0 transition-all duration-500 group-hover:max-h-32 group-hover:opacity-100">
+          {s.body}
+        </p>
+      </div>
+    </article>
   );
 }
 
@@ -95,50 +173,7 @@ export function Wildlife() {
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {species.map((s, i) => (
             <Reveal key={s.name} delay={i * 0.08}>
-              <Tilt>
-                <article className="group relative h-[520px] overflow-hidden rounded-3xl border border-white/[0.06]">
-                  <img
-                    src={s.img}
-                    alt={s.name}
-                    loading="lazy"
-                    width={1280}
-                    height={1600}
-                    className="absolute inset-0 h-full w-full object-cover transition duration-[1.4s] group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
-                  <div
-                    className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100"
-                    style={{
-                      background:
-                        "radial-gradient(circle at 50% 30%, rgba(201,161,59,0.25), transparent 60%)",
-                    }}
-                  />
-
-                  <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-gold/30 bg-ink/60 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-gold/90 backdrop-blur">
-                    {s.status}
-                  </div>
-                  <div className="absolute right-5 top-5 text-right">
-                    <div className="font-display text-3xl text-fog text-glow">
-                      {s.count}
-                    </div>
-                    <div className="text-[9px] uppercase tracking-[0.3em] text-fog/50">
-                      in our reserves
-                    </div>
-                  </div>
-
-                  <div className="absolute inset-x-0 bottom-0 p-6">
-                    <div className="text-[10px] italic tracking-wide text-gold/70">
-                      {s.latin}
-                    </div>
-                    <h3 className="mt-1 font-display text-3xl text-fog">
-                      {s.name}
-                    </h3>
-                    <p className="mt-2 max-h-0 overflow-hidden text-sm leading-relaxed text-fog/70 opacity-0 transition-all duration-500 group-hover:max-h-32 group-hover:opacity-100">
-                      {s.body}
-                    </p>
-                  </div>
-                </article>
-              </Tilt>
+              <Wildlife3DCard s={s} />
             </Reveal>
           ))}
         </div>

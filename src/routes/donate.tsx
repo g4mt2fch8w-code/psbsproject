@@ -11,11 +11,11 @@ import {
   FileText,
   Package,
 } from "lucide-react";
-import { Nav } from '@/components/site/Nav'
-import { Footer } from '@/components/site/Footer'
-import { SmoothScroll } from '@/components/effects/SmoothScroll'
-import { CursorGlow } from '@/components/effects/CursorGlow'
-import { Reveal } from '@/components/effects/Reveal'
+import { Nav } from "@/components/site/Nav";
+import { Footer } from "@/components/site/Footer";
+import { SmoothScroll } from "@/components/effects/SmoothScroll";
+import { CursorGlow } from "@/components/effects/CursorGlow";
+import { Reveal } from "@/components/effects/Reveal";
 
 export const Route = createFileRoute("/donate")({
   head: () => ({

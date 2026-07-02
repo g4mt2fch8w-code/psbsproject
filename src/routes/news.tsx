@@ -80,10 +80,11 @@ function NewsPage() {
   };
 
   return (
-    <main className="relative min-h-screen bg-ink text-foreground page-enter">
+    <>
+      <Nav />
+      <main className="relative min-h-screen bg-ink text-foreground page-enter">
       <SmoothScroll />
       <CursorGlow />
-      <Nav />
 
       {/* ── Hero ── */}
       <section className="pt-32 pb-16 px-6 text-center max-w-4xl mx-auto">
@@ -253,5 +254,6 @@ function NewsPage() {
 
       <Footer />
     </main>
+    </>
   );
 }

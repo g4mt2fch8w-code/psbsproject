@@ -201,11 +201,11 @@ export function Forests() {
             <ul className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
               {reserves.map((r, i) => (
                 <Reveal key={r.name} delay={i * 0.06}>
-                  <li className="group flex items-baseline justify-between gap-6 py-6 transition hover:pl-3">
+                  <li className="group flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-6 py-6 transition hover:pl-3">
                     <span className="font-display text-2xl text-fog md:text-3xl">
                       {r.name}
                     </span>
-                    <span className="text-sm tracking-wide text-gold/80">
+                    <span className="text-sm tracking-wide text-gold/80 sm:whitespace-nowrap">
                       {r.area}
                     </span>
                   </li>

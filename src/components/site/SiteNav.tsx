@@ -5,9 +5,10 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
-import { Sparkles, Leaf, Menu, X } from "lucide-react";
+import { Sparkles, Leaf, Menu, X, Search, ChevronLeft, ChevronRight, RotateCw, Sun, Moon } from "lucide-react";
 import { useState } from "react";
 import { ThemeToggle } from "@/components/site/ThemeToggle";
+import { useTheme } from "@/hooks/useTheme";
 
 const navLinks = [
   { label: "Home", to: "/" as const },
@@ -23,7 +24,9 @@ const navLinks = [
 
 export function SiteNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const { scrollY } = useScroll();
+  const { theme, toggle, isDark } = useTheme();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   const bg = useTransform(
@@ -49,7 +52,7 @@ export function SiteNav() {
       >
         <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-6 py-4 md:px-12">
           <Link to="/" className="group flex items-center gap-3">
-            <span className="relative grid h-11 w-11 place-items-center rounded-full border border-emerald/30 bg-canopy/60">
+            <span className="relative grid h-11 w-11 place-items-center rounded-full border border-black/10 dark:border-emerald/30 bg-black/5 dark:bg-canopy/60">
               <Leaf className="h-5 w-5 text-emerald" />
               <span
                 className="absolute inset-0 rounded-full opacity-0 transition group-hover:opacity-100"
@@ -96,7 +99,7 @@ export function SiteNav() {
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
-              className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-fog lg:hidden"
+              className="grid h-10 w-10 place-items-center rounded-full border border-black/10 dark:border-white/10 text-fog lg:hidden"
               aria-label="Open menu"
             >
               <Menu className="h-5 w-5" />
@@ -120,14 +123,14 @@ export function SiteNav() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 280 }}
-              className="fixed right-0 top-0 z-[70] flex h-full w-[min(100%,320px)] flex-col border-l border-white/[0.08] bg-canopy/95 p-6 backdrop-blur-xl lg:hidden"
+              className="fixed right-0 top-0 z-[70] flex h-full w-[min(100%,320px)] flex-col border-l border-black/10 dark:border-white/[0.08] bg-ink/95 p-6 backdrop-blur-xl lg:hidden"
             >
               <div className="flex items-center justify-between">
                 <span className="font-display text-xl text-fog">Navigate</span>
                 <button
                   type="button"
                   onClick={() => setMobileOpen(false)}
-                  className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-fog"
+                  className="grid h-10 w-10 place-items-center rounded-full border border-black/10 dark:border-white/10 text-fog"
                   aria-label="Close menu"
                 >
                   <X className="h-5 w-5" />
@@ -144,7 +147,7 @@ export function SiteNav() {
                     <Link
                       to={l.to}
                       onClick={() => setMobileOpen(false)}
-                      className={`block rounded-xl px-4 py-3 text-lg transition hover:bg-white/[0.05] ${
+                      className={`block rounded-xl px-4 py-3 text-lg transition hover:bg-black/5 dark:hover:bg-white/[0.05] ${
                         pathname === l.to ? "text-gold" : "text-fog/85"
                       }`}
                     >
@@ -166,6 +169,44 @@ export function SiteNav() {
           </>
         )}
       </AnimatePresence>
+
+      {/* MOBILE ONLY: Bottom Controls Dock */}
+      <div className="md:hidden fixed inset-x-0 bottom-4 z-[60] flex items-center justify-center w-full pointer-events-none px-4">
+        <motion.div 
+          initial={{ y: 100 }}
+          animate={{ y: 0 }}
+          transition={{ type: "spring", damping: 22, stiffness: 200, delay: 0.1 }}
+          className="pointer-events-auto flex items-center justify-between w-full max-w-[320px] rounded-full border border-black/10 dark:border-white/20 bg-black/5 dark:bg-white/[0.03] backdrop-blur-[64px] backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)] p-1 text-fog"
+        >
+          {/* Back */}
+          <button onClick={() => window.history.back()} className="grid h-10 w-10 place-items-center rounded-full hover:text-gold hover:bg-black/5 dark:hover:bg-white/10 transition-colors active:scale-90">
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          
+          {/* Next */}
+          <button onClick={() => window.history.forward()} className="grid h-10 w-10 place-items-center rounded-full hover:text-gold hover:bg-black/5 dark:hover:bg-white/10 transition-colors active:scale-90">
+            <ChevronRight className="h-5 w-5" />
+          </button>
+          
+          {/* Refresh */}
+          <button onClick={() => window.location.reload()} className="grid h-10 w-10 place-items-center rounded-full hover:text-gold hover:bg-black/5 dark:hover:bg-white/10 transition-colors active:scale-90">
+            <RotateCw className="h-4.5 w-4.5" />
+          </button>
+          
+          {/* Divider */}
+          <div className="h-6 w-[1px] bg-black/10 dark:bg-white/20 mx-0.5" />
+
+          {/* Search */}
+          <button onClick={() => setSearchOpen(true)} className="grid h-10 w-10 place-items-center rounded-full hover:text-emerald hover:bg-black/5 dark:hover:bg-white/10 transition-colors active:scale-90">
+            <Search className="h-4.5 w-4.5" />
+          </button>
+          
+          {/* Theme */}
+          <button onClick={toggle} className="grid h-10 w-10 place-items-center rounded-full hover:text-emerald hover:bg-black/5 dark:hover:bg-white/10 transition-colors active:scale-90">
+            {isDark ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
+          </button>
+        </motion.div>
+      </div>
     </>
   );
 }

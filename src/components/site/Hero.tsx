@@ -84,9 +84,10 @@ export function Hero() {
 
       {/* Layer 6: tree silhouette */}
       <svg
+        className="absolute -bottom-1 left-0 z-20 w-full h-[15vh] min-h-[120px] max-h-[200px] text-bg translate-y-[2px]"
         viewBox="0 0 1440 300"
+        fill="none"
         preserveAspectRatio="none"
-        className="absolute bottom-0 left-0 h-[28%] w-full text-ink"
         aria-hidden
       >
         <path
@@ -101,7 +102,7 @@ export function Hero() {
       {/* Content */}
       <motion.div
         style={{ y: yText, opacity, rotateX, scale, perspective: 1000 }}
-        className="relative z-10 mx-auto flex h-full max-w-[1600px] flex-col justify-center px-6 md:px-12"
+        className="relative z-10 mx-auto flex h-full max-w-[1600px] flex-col justify-center px-6 md:px-12 pt-32 pb-24 md:pt-40 md:pb-32"
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -115,7 +116,7 @@ export function Hero() {
           </span>
         </motion.div>
 
-        <h1 className="mt-8 max-w-[15ch] font-display text-[clamp(3.5rem,9vw,9.5rem)] leading-[0.95] tracking-tight text-fog">
+        <h1 className="mt-8 max-w-[15ch] font-display text-[clamp(3.5rem,9vw,9.5rem)] leading-[0.95] tracking-tight text-white/95">
           {["Protecting", "Forests.", "Preserving", "Futures."].map((w, i) => (
             <motion.span
               key={w + i}
@@ -140,7 +141,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.4 }}
-          className="mt-10 max-w-xl text-base leading-relaxed text-fog/70 md:text-lg"
+          className="mt-10 max-w-xl text-base leading-relaxed text-white/70 md:text-lg"
         >
           A movement born in the wild heart of Bhandara — restoring forests,
           protecting wildlife, and walking alongside the communities who call
@@ -166,7 +167,7 @@ export function Hero() {
           </a>
           <a
             href="#impact"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-7 py-3.5 text-sm text-fog/90 backdrop-blur transition hover:border-gold/40 hover:bg-white/[0.06]"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-7 py-3.5 text-sm text-white/90 backdrop-blur transition hover:border-gold/40 hover:bg-white/[0.06]"
           >
             See our Impact
           </a>
@@ -180,7 +181,7 @@ export function Hero() {
         transition={{ delay: 2 }}
         className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-center"
       >
-        <span className="block text-[10px] uppercase tracking-[0.4em] text-fog/50">
+        <span className="block text-[10px] uppercase tracking-[0.4em] text-white/50">
           Enter the forest
         </span>
         <ChevronDown className="mx-auto mt-2 h-4 w-4 animate-bounce text-gold/70" />

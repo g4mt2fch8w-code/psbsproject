@@ -1,8 +1,6 @@
 import { Reveal } from "@/components/effects/Reveal";
 import { motion } from "framer-motion";
-import { ForestGlobe } from "@/components/effects/ForestGlobe";
 import { ClientOnly } from "@/components/effects/ClientOnly";
-import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 
 const growth = [12, 18, 22, 30, 36, 45, 58, 72, 88, 102, 124, 148, 168, 184];
@@ -27,7 +25,7 @@ function AreaChart() {
   const area = `${path} L${w},${h} L0,${h} Z`;
 
   return (
-    <svg viewBox={`0 0 ${w} ${h}`} className="h-full w-full">
+    <svg viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" className="h-full w-full overflow-visible">
       <defs>
         <linearGradient id="area-g" x1="0" x2="0" y1="0" y2="1">
           <stop offset="0" stopColor="#C9A13B" stopOpacity="0.5" />
@@ -86,14 +84,7 @@ export function DataViz() {
     <section id="dataviz" className="relative overflow-hidden border-y border-white/[0.06] bg-canopy/30 py-32 md:py-44">
       {/* 3D Background */}
       <div className="absolute inset-0 z-0">
-        <ClientOnly>
-          <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-            <Suspense fallback={null}>
-              <ForestGlobe />
-            </Suspense>
-          </Canvas>
-        </ClientOnly>
-        <div className="absolute inset-0 bg-ink/60 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-ink/90 backdrop-blur-sm" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1500px] px-6 md:px-12">
@@ -115,7 +106,7 @@ export function DataViz() {
         <div className="mt-16 grid gap-6 lg:grid-cols-3">
           {/* Growth chart */}
           <Reveal className="lg:col-span-2">
-            <div className="glass-card relative h-full overflow-hidden rounded-3xl p-8">
+            <div className="glass-card relative h-full overflow-hidden rounded-3xl p-5 md:p-8">
               <div className="flex items-end justify-between">
                 <div>
                   <div className="text-[10px] uppercase tracking-[0.3em] text-fog/50">
@@ -129,7 +120,7 @@ export function DataViz() {
                   +38% YoY
                 </div>
               </div>
-              <div className="mt-8 h-64">
+              <div className="mt-8 h-48 md:h-64">
                 <AreaChart />
               </div>
               <div className="mt-4 flex justify-between text-[10px] uppercase tracking-[0.3em] text-fog/40">
@@ -144,7 +135,7 @@ export function DataViz() {
 
           {/* Wildlife bars */}
           <Reveal delay={0.1}>
-            <div className="glass-card h-full rounded-3xl p-8">
+            <div className="glass-card h-full rounded-3xl p-5 md:p-8">
               <div className="text-[10px] uppercase tracking-[0.3em] text-fog/50">
                 Wildlife Census
               </div>

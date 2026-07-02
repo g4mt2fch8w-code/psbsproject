@@ -145,10 +145,11 @@ function DonatePage() {
   };
 
   return (
-    <main className="relative min-h-screen bg-ink text-foreground page-enter">
+    <>
+      <Nav />
+      <main className="relative min-h-screen bg-ink text-foreground page-enter">
       <SmoothScroll />
       <CursorGlow />
-      <Nav />
 
       {/* ── Hero ── */}
       <section className="pt-28 pb-20 px-6 text-center">
@@ -495,5 +496,6 @@ function DonatePage() {
 
       <Footer />
     </main>
+    </>
   );
 }

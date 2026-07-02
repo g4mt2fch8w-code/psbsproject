@@ -6,7 +6,7 @@ import leopard from "@/assets/leopard.jpg";
 import { useRef, useState, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { View, Preload, useTexture, Text } from "@react-three/drei";
+import { useTexture, Text } from "@react-three/drei";
 import { ClientOnly } from "../effects/ClientOnly";
 
 const species = [
@@ -136,20 +136,26 @@ function CardContent({ s, hovered }: { s: typeof species[0]; hovered: boolean })
 
 function Wildlife3DCard({ s }: { s: typeof species[0] }) {
   const [hovered, setHovered] = useState(false);
-  const viewRef = useRef<HTMLDivElement>(null);
-
   return (
     <article
-      className="group relative h-[520px] overflow-hidden rounded-3xl border border-white/[0.06] bg-ink"
+      className="group relative h-[450px] md:h-[520px] overflow-hidden rounded-3xl border border-white/[0.06] bg-ink"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div ref={viewRef} className="absolute inset-0 z-0 overflow-hidden">
-        <View track={viewRef as any}>
-          <Suspense fallback={null}>
-            <CardContent s={s} hovered={hovered} />
-          </Suspense>
-        </View>
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <ClientOnly>
+          <Canvas
+            camera={{ position: [0, 0, 5], fov: 45 }}
+            dpr={[1, 2]}
+            gl={{ antialias: true, alpha: true }}
+          >
+            <ambientLight intensity={0.5} />
+            <pointLight position={[10, 10, 10]} intensity={1} />
+            <Suspense fallback={null}>
+              <CardContent s={s} hovered={hovered} />
+            </Suspense>
+          </Canvas>
+        </ClientOnly>
       </div>
 
       <div className="pointer-events-none absolute inset-0 z-1 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
@@ -204,7 +210,7 @@ export function Wildlife() {
           </p>
         </Reveal>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 md:mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {species.map((s, i) => (
             <Reveal key={s.name} delay={i * 0.08}>
               <Wildlife3DCard s={s} />
@@ -212,26 +218,6 @@ export function Wildlife() {
           ))}
         </div>
       </div>
-
-      <ClientOnly>
-        <Canvas
-          eventSource={containerRef as any}
-          className="pointer-events-none fixed inset-0 z-0"
-          camera={{ position: [0, 0, 5], fov: 45 }}
-          dpr={[1, 2]}
-          gl={{
-            antialias: true,
-            alpha: true,
-            preserveDrawingBuffer: true,
-            powerPreference: "high-performance"
-          }}
-        >
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} intensity={1} />
-          <View.Port />
-          <Preload all />
-        </Canvas>
-      </ClientOnly>
     </section>
   );
 }

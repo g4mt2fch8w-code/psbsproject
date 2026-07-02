@@ -1,0 +1,936 @@
+[
+  {
+    "name": "Achanakmar-Amarkantak",
+    "lat": 22.591451,
+    "lng": 81.7731136,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Dibru-Saikhowa National Park",
+    "lat": 27.6855209,
+    "lng": 95.3947507,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Great Nicobar",
+    "lat": 7.0000167,
+    "lng": 93.8110528,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Great Rann of Kutch",
+    "lat": 23.9415597,
+    "lng": 70.9013572,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Gulf of Mannar",
+    "lat": 9.1702862,
+    "lng": 78.828285,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Khangchendzonga National Park",
+    "lat": 27.6558151,
+    "lng": 88.285737,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Manas National Park",
+    "lat": 26.7227946,
+    "lng": 90.977888,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Nanda Devi National Park",
+    "lat": 30.4084501,
+    "lng": 79.855557,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Nokrek National Park",
+    "lat": 25.4745743,
+    "lng": 90.3017998,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Pachmarhi",
+    "lat": 22.4736824,
+    "lng": 78.4360537,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Panna National Park",
+    "lat": 24.6160809,
+    "lng": 79.940037,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Kamlang Tiger Reserve",
+    "lat": 27.7719341,
+    "lng": 96.5908736,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Namdapha National Park",
+    "lat": 27.4708813,
+    "lng": 96.5552426,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Pakke Tiger Reserve",
+    "lat": 27.0821688,
+    "lng": 92.7649701,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Kaziranga National Park",
+    "lat": 26.6581047,
+    "lng": 93.3927441,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Nameri National Park",
+    "lat": 26.947513,
+    "lng": 92.8919014,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Orang National Park",
+    "lat": 26.5418131,
+    "lng": 92.3148855,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Valmiki National Park",
+    "lat": 27.4060808,
+    "lng": 84.0052985,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Guru Ghasidas National Park",
+    "lat": 23.6810014,
+    "lng": 82.5255523,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Indravati National Park",
+    "lat": 19.1310675,
+    "lng": 80.5066454,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Udanti Sitanadi Tiger Reserve",
+    "lat": 20.2385228,
+    "lng": 82.3160124,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Palamau Tiger Reserve",
+    "lat": 23.6817284,
+    "lng": 84.1391844,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Bandipur National Park",
+    "lat": 11.7866822,
+    "lng": 76.4206959,
+    "color": "#4ade80"
+  },
+  {
+    "name": "BRT Wildlife Sanctuary",
+    "lat": 11.958684,
+    "lng": 77.1775894,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Kali Tiger Reserve",
+    "lat": 15.1994793,
+    "lng": 74.3538515,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Nagarhole National Park",
+    "lat": 12.0599313,
+    "lng": 76.1541467,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Parambikulam Tiger Reserve",
+    "lat": 10.4370619,
+    "lng": 76.7578787,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Periyar National Park",
+    "lat": 9.4365357,
+    "lng": 77.3049208,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Bandhavgarh National Park",
+    "lat": 23.6444125,
+    "lng": 81.0245023,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Madhav National Park",
+    "lat": 25.4916481,
+    "lng": 77.8241263,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Pench Tiger Reserve",
+    "lat": 21.6950552,
+    "lng": 79.2487702,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Ratapani Wildlife Sanctuary",
+    "lat": 22.9152746,
+    "lng": 77.7486056,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Sanjay-Dubri Tiger Reserve",
+    "lat": 23.9807436,
+    "lng": 81.6700541,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Satpura Tiger Reserve",
+    "lat": 22.4831472,
+    "lng": 78.3217234,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Bor Tiger Reserve",
+    "lat": 21.0095623,
+    "lng": 78.6075075,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Melghat Tiger Reserve",
+    "lat": 21.4373806,
+    "lng": 77.1754066,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Nawegaon-Nagzira Tiger Reserve",
+    "lat": 21.2481823,
+    "lng": 79.953287,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Sahyadri Tiger Reserve",
+    "lat": 17.1885822,
+    "lng": 73.7868529,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Tadoba Andhari Tiger Reserve",
+    "lat": 20.2670283,
+    "lng": 79.4945193,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Dampa Tiger Reserve",
+    "lat": 23.5630087,
+    "lng": 92.3680478,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Satkosia Tiger Reserve",
+    "lat": 20.5871728,
+    "lng": 84.8616266,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Sariska Tiger Reserve",
+    "lat": 27.3784593,
+    "lng": 76.4345746,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Anamalai Tiger Reserve",
+    "lat": 10.3882231,
+    "lng": 76.9516576,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Mudumalai National Park",
+    "lat": 11.6191251,
+    "lng": 76.474585,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Sathyamangalam Tiger Reserve",
+    "lat": 11.5529001,
+    "lng": 77.1393888,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Amrabad Tiger Reserve",
+    "lat": 16.339783,
+    "lng": 79.0099516,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Kawal Tiger Reserve",
+    "lat": 19.2083404,
+    "lng": 78.8714452,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Dudhwa National Park",
+    "lat": 28.5081868,
+    "lng": 80.6623711,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Pilibhit Tiger Reserve",
+    "lat": 28.7192098,
+    "lng": 80.0764192,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Jim Corbett National Park",
+    "lat": 29.5574752,
+    "lng": 78.842495,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Rajaji National Park",
+    "lat": 30.1106605,
+    "lng": 78.3333621,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Dachigam National Park",
+    "lat": 34.1329194,
+    "lng": 75.0224129,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Desert National Park",
+    "lat": 26.3035293,
+    "lng": 70.5276076,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Eravikulam National Park",
+    "lat": 10.2243433,
+    "lng": 77.0731537,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Gir National Park",
+    "lat": 21.1267789,
+    "lng": 70.7747952,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Great Himalayan National Park",
+    "lat": 31.7968335,
+    "lng": 77.7239269,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Hemis National Park",
+    "lat": 33.6639158,
+    "lng": 77.3504137,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Jaldapara National Park",
+    "lat": 26.6847739,
+    "lng": 89.3047177,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Keibul Lamjao National Park",
+    "lat": 24.4851568,
+    "lng": 93.8385366,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Keoladeo National Park",
+    "lat": 27.1650571,
+    "lng": 77.5186504,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Kuno National Park",
+    "lat": 25.7710835,
+    "lng": 77.1908009,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Sanjay Gandhi National Park",
+    "lat": 19.215041,
+    "lng": 72.9121984,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Silent Valley National Park",
+    "lat": 11.1310408,
+    "lng": 76.4443327,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Valley of Flowers National Park",
+    "lat": 30.7430879,
+    "lng": 79.6177253,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Wayanad Wildlife Sanctuary",
+    "lat": 11.6725124,
+    "lng": 76.368769,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Chilika Lake",
+    "lat": 19.6853195,
+    "lng": 85.2503699,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Deepor Beel",
+    "lat": 26.1214488,
+    "lng": 91.6488261,
+    "color": "#4ade80"
+  },
+  {
+    "name": "East Kolkata Wetlands",
+    "lat": 22.5363359,
+    "lng": 88.4390387,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Loktak Lake",
+    "lat": 24.5584253,
+    "lng": 93.8132376,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Lonar Lake",
+    "lat": 19.9764999,
+    "lng": 76.5079739,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Pong Dam Lake",
+    "lat": 32.0083127,
+    "lng": 76.0378237,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Sambhar Salt Lake",
+    "lat": 26.9497699,
+    "lng": 75.0683212,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Sultanpur National Park",
+    "lat": 28.4600139,
+    "lng": 76.888971,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Wular Lake",
+    "lat": 34.3502521,
+    "lng": 74.5419994,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Amboseli National Park",
+    "lat": -2.6411416,
+    "lng": 37.2362331,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Bwindi Impenetrable National Park",
+    "lat": -1.0037559,
+    "lng": 29.6487746,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Chobe National Park",
+    "lat": -18.5525706,
+    "lng": 24.3996069,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Etosha National Park",
+    "lat": -18.9913305,
+    "lng": 15.7460551,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Kruger National Park",
+    "lat": -23.9357763,
+    "lng": 31.5083741,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Namib-Naukluft National Park",
+    "lat": -24.607231,
+    "lng": 15.1689265,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Serengeti National Park",
+    "lat": -2.3712909,
+    "lng": 34.6983828,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Tsavo National Park",
+    "lat": -3.408364,
+    "lng": 37.9574506,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Virunga National Park",
+    "lat": -0.3470599,
+    "lng": 29.5387998,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Chitwan National Park",
+    "lat": 27.5168214,
+    "lng": 84.4382935,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Fuji-Hakone-Izu National Park",
+    "lat": 35.4040975,
+    "lng": 138.6565076,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Gunung Leuser National Park",
+    "lat": 3.4931772,
+    "lng": 97.5595293,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Khao Sok National Park",
+    "lat": 9.0686898,
+    "lng": 98.5738024,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Komodo National Park",
+    "lat": -8.6069899,
+    "lng": 119.5729395,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Sagarmatha National Park",
+    "lat": 27.942569,
+    "lng": 86.7505936,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Taman Negara National Park",
+    "lat": 1.7207096,
+    "lng": 110.4784001,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Yakushima National Park",
+    "lat": 30.3250431,
+    "lng": 130.5380802,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Cairngorms National Park",
+    "lat": 57.0756408,
+    "lng": -3.6131708,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Gran Paradiso National Park",
+    "lat": 45.5406795,
+    "lng": 7.3454723,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Jostedalsbreen National Park",
+    "lat": 61.6351864,
+    "lng": 6.9271368,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Plitvice Lakes National Park",
+    "lat": 44.8523012,
+    "lng": 15.590349,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Snowdonia National Park",
+    "lat": 52.9139398,
+    "lng": -3.8345972,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Swiss National Park",
+    "lat": 46.6724808,
+    "lng": 10.2380217,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Tatra National Park",
+    "lat": 49.2562305,
+    "lng": 19.948966,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Vatnajökull National Park",
+    "lat": 64.6962739,
+    "lng": -16.9577217,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Banff National Park",
+    "lat": 51.4881335,
+    "lng": -115.9380498,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Denali National Park",
+    "lat": 63.2316616,
+    "lng": -151.0405554,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Glacier National Park",
+    "lat": 48.6174862,
+    "lng": -113.7608851,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Grand Canyon National Park",
+    "lat": 36.3078548,
+    "lng": -112.292896,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Jasper National Park",
+    "lat": 52.8041035,
+    "lng": -117.8048267,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Tulum National Park",
+    "lat": 20.2246205,
+    "lng": -87.4257293,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Yellowstone National Park",
+    "lat": 44.6200885,
+    "lng": -110.5606893,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Yosemite National Park",
+    "lat": 37.8393004,
+    "lng": -119.5164635,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Zion National Park",
+    "lat": 37.3221673,
+    "lng": -113.0047934,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Abel Tasman National Park",
+    "lat": -40.8898347,
+    "lng": 172.970428,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Aoraki Mount Cook National Park",
+    "lat": -43.6048727,
+    "lng": 170.2410739,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Daintree National Park",
+    "lat": -16.2875299,
+    "lng": 145.2046723,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Fiordland National Park",
+    "lat": -45.2915528,
+    "lng": 167.4879931,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Kakadu National Park",
+    "lat": -13.0514808,
+    "lng": 132.5362452,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Tongariro National Park",
+    "lat": -39.2354258,
+    "lng": 175.5401303,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Uluru-Kata Tjuta National Park",
+    "lat": -25.195,
+    "lng": 130.7083333,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Canaima National Park",
+    "lat": 5.5943331,
+    "lng": -62.1257965,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Galápagos National Park",
+    "lat": -0.628815,
+    "lng": -90.3638752,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Iguaçu National Park",
+    "lat": -25.375056,
+    "lng": -53.7771208,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Iguazú National Park",
+    "lat": -25.6478906,
+    "lng": -54.2856026,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Los Glaciares National Park",
+    "lat": -49.9790031,
+    "lng": -73.3670321,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Manú National Park",
+    "lat": -12.2608688,
+    "lng": -71.484179,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Torres del Paine National Park",
+    "lat": -51.0405776,
+    "lng": -72.9845251,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Antarctica (Emperor Penguins)",
+    "lat": -82,
+    "lng": 45,
+    "color": "#bae6fd"
+  },
+  {
+    "name": "Arctic Circle (Polar Bears)",
+    "lat": 80,
+    "lng": 0,
+    "color": "#bae6fd"
+  },
+  {
+    "name": "Gobi Desert",
+    "lat": 42.5,
+    "lng": 103,
+    "color": "#fcd34d"
+  },
+  {
+    "name": "Patagonian Desert",
+    "lat": -41,
+    "lng": -68,
+    "color": "#fcd34d"
+  },
+  {
+    "name": "North Pole",
+    "lat": 90,
+    "lng": 0,
+    "color": "#ffffff"
+  },
+  {
+    "name": "South Pole",
+    "lat": -90,
+    "lng": 0,
+    "color": "#ffffff"
+  },
+  {
+    "name": "Nagarjunsagar-Srisailam Tiger Reserve",
+    "lat": 16.3,
+    "lng": 78.9,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Bhadra Wildlife Sanctuary",
+    "lat": 13.5,
+    "lng": 75.6,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Kanha Tiger Reserve",
+    "lat": 22.3,
+    "lng": 80.6,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Veerangana Durgavati Tiger Reserve",
+    "lat": 23.6,
+    "lng": 79.5,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Dholpur-Karauli Tiger Reserve",
+    "lat": 26.6,
+    "lng": 77.6,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Mukundra Hills Tiger Reserve",
+    "lat": 24.8,
+    "lng": 75.9,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Ramgarh Vishdhari Tiger Reserve",
+    "lat": 25.4,
+    "lng": 75.9,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Ranthambore National Park",
+    "lat": 26,
+    "lng": 76.5,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Kalakad Mundanthurai Tiger Reserve",
+    "lat": 8.6,
+    "lng": 77.4,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Srivilliputhur Megamalai Tiger Reserve",
+    "lat": 9.6,
+    "lng": 77.5,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Amanagarh Tiger Reserve",
+    "lat": 29.3,
+    "lng": 78.7,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Ranipur Tiger Reserve",
+    "lat": 25.1,
+    "lng": 81,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Buxa Tiger Reserve",
+    "lat": 26.6,
+    "lng": 89.6,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Similipal National Park",
+    "lat": 21.6,
+    "lng": 86.3,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Sundarbans National Park",
+    "lat": 21.9,
+    "lng": 89,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Kumbhalgarh Tiger Reserve",
+    "lat": 25.1,
+    "lng": 73.5,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Achanakmar Tiger Reserve",
+    "lat": 22.5,
+    "lng": 81.7,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Guru Ghasidas-Tamor Pingla",
+    "lat": 23.8,
+    "lng": 82.3,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Amazon Rainforest",
+    "lat": -3.4,
+    "lng": -62.2,
+    "color": "#4ade80",
+    "size": 1.2
+  },
+  {
+    "name": "Congo Basin",
+    "lat": 0,
+    "lng": 22,
+    "color": "#4ade80",
+    "size": 1
+  },
+  {
+    "name": "Daintree Rainforest",
+    "lat": -16.2,
+    "lng": 145.4,
+    "color": "#4ade80"
+  },
+  {
+    "name": "Taiga (Siberia)",
+    "lat": 61,
+    "lng": 100,
+    "color": "#22c55e",
+    "size": 1
+  },
+  {
+    "name": "Boreal Forest (Canada)",
+    "lat": 56,
+    "lng": -106,
+    "color": "#22c55e",
+    "size": 1
+  },
+  {
+    "name": "Tongass National Forest",
+    "lat": 56.8,
+    "lng": -133.4,
+    "color": "#22c55e"
+  },
+  {
+    "name": "Valdivian Temperate",
+    "lat": -40,
+    "lng": -73,
+    "color": "#22c55e"
+  },
+  {
+    "name": "Black Forest",
+    "lat": 48.3,
+    "lng": 8.2,
+    "color": "#22c55e"
+  },
+  {
+    "name": "Białowieża Forest",
+    "lat": 52.7,
+    "lng": 23.8,
+    "color": "#22c55e"
+  }
+]

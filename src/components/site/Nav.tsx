@@ -4,7 +4,7 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
-import { Leaf, Sun, Moon, Menu, X, Sparkles, Search, Home, ArrowRight, FileText, HelpCircle } from "lucide-react";
+import { Leaf, Sun, Moon, Menu, X, Sparkles, Search, Home, ArrowRight, FileText, HelpCircle, ChevronLeft, ChevronRight, RotateCw } from "lucide-react";
 import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "@/hooks/useTheme";
@@ -87,8 +87,8 @@ export function Nav() {
     scrollY,
     [0, 120],
     [
-      isDark ? "rgba(15,15,15,0.4)" : "rgba(250,248,242,0.5)",
-      isDark ? "rgba(7,20,11,0.65)" : "rgba(240,238,230,0.85)",
+      isDark ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.2)",
+      isDark ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.75)",
     ]
   );
 
@@ -111,6 +111,25 @@ export function Nav() {
     scrollY,
     [0, 120],
     ["16px", "10px"]
+  );
+
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    return scrollY.onChange((v) => setIsScrolled(v > 50));
+  }, [scrollY]);
+
+  const overLightBg = !isDark && (isScrolled || !isHome);
+  const borderClass = overLightBg ? "border-black/20" : "border-white/20 dark:border-white/10";
+  const bgClass = overLightBg ? "bg-black/10" : "bg-white/10 dark:bg-white/[0.03]";
+  const hoverBgClass = overLightBg ? "hover:bg-black/20" : "hover:bg-white/20 dark:hover:bg-white/10";
+
+  const textColorAtTop = isHome ? "rgba(255, 255, 255, 0.95)" : (isDark ? "rgba(255, 255, 255, 0.95)" : "rgba(30, 30, 30, 0.95)");
+  const textColorScrolled = isDark ? "rgba(255, 255, 255, 0.95)" : "rgba(30, 30, 30, 0.95)";
+
+  const textColor = useTransform(
+    scrollY,
+    [0, 120],
+    [textColorAtTop, textColorScrolled]
   );
 
   // Handle hotkeys (Cmd+K or Ctrl+K or '/' to search)
@@ -168,121 +187,222 @@ export function Nav() {
 
   return (
     <>
-      {/* Floating Container */}
-      <div className="fixed inset-x-0 top-4 z-50 flex justify-center px-4 md:px-8 pointer-events-none">
+      {/* Master Unified Top Row (Desktop: Separate Buttons, Mobile: Unified Nav) */}
+      <div className="fixed inset-x-0 top-3 md:top-5 z-[60] flex items-center justify-between md:justify-center px-2 md:px-2 w-full pointer-events-none gap-1 md:gap-2">
+        
+        {/* DESKTOP ONLY: 1st, 2nd, 3rd (Back, Next, Refresh) */}
+        <div className="hidden md:flex items-center gap-2 shrink-0 pointer-events-auto">
+          {/* Group Back & Next closer together */}
+          <div className="flex items-center gap-1">
+            {/* 1. Back */}
+            <motion.button
+              style={{ color: textColor }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.85, transition: { type: "spring", stiffness: 400, damping: 17 } }}
+              onClick={() => window.history.back()}
+              className={`grid h-10 w-10 place-items-center rounded-full border ${borderClass} ${bgClass} backdrop-blur-[64px] backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:text-gold ${hoverBgClass} transition-colors`}
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </motion.button>
+            {/* 2. Next */}
+            <motion.button
+              style={{ color: textColor }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.85, transition: { type: "spring", stiffness: 400, damping: 17 } }}
+              onClick={() => window.history.forward()}
+              className={`grid h-10 w-10 place-items-center rounded-full border ${borderClass} ${bgClass} backdrop-blur-[64px] backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:text-gold ${hoverBgClass} transition-colors`}
+            >
+              <ChevronRight className="h-5 w-5" />
+            </motion.button>
+          </div>
+          
+          {/* 3. Refresh */}
+          <motion.button
+            style={{ color: textColor }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.85, transition: { type: "spring", stiffness: 400, damping: 17 } }}
+            onClick={() => window.location.reload()}
+            className={`grid h-10 w-10 place-items-center rounded-full border ${borderClass} ${bgClass} backdrop-blur-[64px] backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:text-gold ${hoverBgClass} transition-colors`}
+          >
+            <RotateCw className="h-4.5 w-4.5" />
+          </motion.button>
+        </div>
+
+        {/* 4. The Main Navbar (Logo + Links) */}
         <motion.header
           style={{
             backgroundColor: bg,
             backdropFilter: blur,
             boxShadow: shadow,
-            paddingTop: paddingY,
-            paddingBottom: paddingY,
           }}
-          className="w-full max-w-[1400px] pointer-events-auto rounded-full border border-white/[0.08] dark:border-white/[0.08] light:border-black/[0.06] flex items-center justify-between px-6 transition-all duration-500"
+          className={`pointer-events-auto rounded-full border ${borderClass} ${bgClass} backdrop-blur-[64px] backdrop-saturate-150 flex items-center justify-between md:justify-center px-3 py-1.5 md:py-1.5 md:px-3 gap-3 transition-colors duration-500 w-full md:w-auto shrink-0`}
         >
           {/* Logo / Brand */}
-          <Link to="/" className="group flex items-center gap-3 shrink-0">
-            <span className="relative grid h-10 w-10 place-items-center rounded-full border border-emerald/30 bg-canopy/60 transition group-hover:border-emerald/60">
-              <Leaf className="h-4.5 w-4.5 text-emerald" />
+          <Link to="/" className="group flex items-center gap-2 shrink-0">
+            <span className="relative grid h-8 w-8 md:h-9 md:w-9 place-items-center rounded-full border border-emerald/30 bg-canopy/60 transition group-hover:border-emerald/60">
+              <Leaf className="h-4 w-4 text-emerald" />
               <span
                 className="absolute inset-0 rounded-full opacity-0 transition group-hover:opacity-100"
                 style={{ boxShadow: "var(--shadow-emerald)" }}
               />
             </span>
-            <span className="leading-tight">
-              <span className="block font-display text-lg tracking-wide text-fog">
+            <motion.span style={{ color: textColor }} className="leading-tight">
+              <span className="block font-display text-base md:text-lg tracking-wide">
                 PSBS
               </span>
-              <span className="block text-[8px] uppercase tracking-[0.22em] text-muted-foreground">
+              <span className="block text-[7px] md:text-[8px] uppercase tracking-[0.22em] opacity-60">
                 Bhandara · India
               </span>
-            </span>
+            </motion.span>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden items-center gap-5 xl:gap-6 lg:flex">
+          <nav className="hidden items-center gap-3 xl:gap-5 lg:flex pl-2">
             {pageLinks.map((l) => (
-              <Link
-                key={l.label}
-                to={l.href as any}
-                className="relative text-sm tracking-wide text-fog/75 transition hover:text-fog [&.active]:text-gold group flex items-center gap-1.5"
-              >
-                {l.label === "Home" && <Home className="h-3.5 w-3.5 opacity-60" />}
-                {l.label}
-                <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
-              </Link>
+              <motion.div key={l.label} style={{ color: textColor }}>
+                <Link
+                  to={l.href as any}
+                  className="relative text-[13px] md:text-sm tracking-wide opacity-80 transition hover:opacity-100 [&.active]:text-gold group flex items-center gap-1.5"
+                >
+                  {l.label === "Home" && <Home className="h-3.5 w-3.5 opacity-60" />}
+                  {l.label}
+                  <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
+                </Link>
+              </motion.div>
             ))}
             {isHome &&
               homeLinks.map((l) => (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  className="relative text-sm tracking-wide text-fog/55 transition hover:text-fog/90 group"
-                >
-                  {l.label}
-                  <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gold/60 transition-all duration-300 group-hover:w-full" />
-                </a>
+                <motion.div key={l.label} style={{ color: textColor }}>
+                  <a
+                    href={l.href}
+                    className="relative text-[13px] md:text-sm tracking-wide opacity-60 transition hover:opacity-90 group"
+                  >
+                    {l.label}
+                    <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gold/60 transition-all duration-300 group-hover:w-full" />
+                  </a>
+                </motion.div>
               ))}
           </nav>
 
-          {/* Right side controls */}
-          <div className="flex items-center gap-2 md:gap-3">
-            {/* Instant Search Pill / Button */}
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="flex items-center gap-2 rounded-full border border-white/10 dark:border-white/10 light:border-black/10 bg-white/[0.04] dark:bg-white/[0.04] light:bg-black/[0.03] px-3.5 py-1.5 text-xs text-fog/60 hover:border-gold/40 hover:text-gold transition duration-300"
-            >
-              <Search className="h-3.5 w-3.5" />
-              <span className="hidden md:inline">Search...</span>
-              <kbd className="hidden md:inline-flex h-4 items-center gap-0.5 rounded border border-white/20 bg-white/10 px-1.5 text-[9px] font-mono opacity-60">
-                ⌘K
-              </kbd>
-            </button>
-
-            {/* Theme Toggle */}
-            <button
-              id="theme-toggle"
-              onClick={toggle}
-              aria-label={
-                isDark ? "Switch to light mode" : "Switch to dark mode"
-              }
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-fog/70 transition hover:border-gold/40 hover:text-gold"
-            >
-              {isDark ? (
-                <Sun className="h-4 w-4" />
-              ) : (
-                <Moon className="h-4 w-4" />
-              )}
-            </button>
-
-            {/* Donate CTA */}
+          {/* MOBILE ONLY: Donate and Menu Button inside Navbar */}
+          <div className="flex md:hidden items-center gap-2 shrink-0">
             <Link
               to="/donate"
-              className="hidden items-center gap-2 rounded-full px-5 py-2 text-sm font-medium text-ink transition hover:opacity-90 md:inline-flex animate-shimmer"
+              className="flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold text-black transition-all shadow-[0_0_15px_rgba(201,161,59,0.5)] border border-white/20"
               style={{
-                background: "var(--gradient-gold)",
-                boxShadow: "var(--shadow-glow)",
+                background: "linear-gradient(135deg, #FFD700 0%, #FDB931 50%, #FFD700 100%)",
+                backgroundSize: "200% auto",
+                animation: "shimmer 6s linear infinite",
               }}
             >
-              <Sparkles className="h-3.5 w-3.5" />
+              <Sparkles className="h-3 w-3" />
               Donate
             </Link>
-
-            {/* Mobile menu button */}
+            
             <button
               id="mobile-menu-toggle"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-fog/70 transition hover:border-gold/40 hover:text-gold lg:hidden"
+              className={`grid h-10 w-10 place-items-center rounded-full border ${borderClass} ${bgClass} backdrop-blur-md shadow-inner text-fog hover:text-gold ${hoverBgClass} transition-all duration-300 relative overflow-hidden group`}
             >
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               {menuOpen ? (
-                <X className="h-4 w-4" />
+                <X className="h-5 w-5 relative z-10" />
               ) : (
-                <Menu className="h-4 w-4" />
+                <Menu className="h-5 w-5 relative z-10" />
               )}
             </button>
           </div>
         </motion.header>
+
+        {/* DESKTOP ONLY: 5th, 6th, 7th (Search, Theme, Donate) */}
+        <div className="hidden md:flex items-center gap-2 shrink-0 pointer-events-auto">
+          {/* 5. Search */}
+          <motion.button
+            style={{ color: textColor }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.85, transition: { type: "spring", stiffness: 400, damping: 17 } }}
+            onClick={() => setSearchOpen(true)}
+            className={`grid h-10 w-10 place-items-center rounded-full border ${borderClass} ${bgClass} backdrop-blur-[64px] backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:text-emerald transition-colors`}
+          >
+            <Search className="h-4.5 w-4.5" />
+          </motion.button>
+
+          {/* 6. Theme */}
+          <motion.button
+            style={{ color: textColor }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.85, transition: { type: "spring", stiffness: 400, damping: 17 } }}
+            onClick={toggle}
+            className={`grid h-10 w-10 place-items-center rounded-full border ${borderClass} ${bgClass} backdrop-blur-[64px] backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:text-gold ${hoverBgClass} transition-colors`}
+            aria-label="Toggle theme"
+          >
+            {isDark ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
+          </motion.button>
+
+          {/* 7. Donate */}
+          <Link
+            to="/donate"
+            className="flex items-center gap-1.5 rounded-full px-5 py-2.5 md:px-6 md:py-2.5 text-[13px] md:text-sm font-semibold text-black transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(201,161,59,0.4)] hover:shadow-[0_0_30px_rgba(201,161,59,0.7)] border border-white/20"
+            style={{
+              background: "linear-gradient(135deg, #FFD700 0%, #FDB931 50%, #FFD700 100%)",
+              backgroundSize: "200% auto",
+              animation: "shimmer 8s linear infinite",
+            }}
+          >
+            <Sparkles className="h-3.5 w-3.5" />
+            Donate
+          </Link>
+        </div>
+      </div>
+
+      {/* MOBILE ONLY: Bottom Controls Dock */}
+      <div className="md:hidden fixed inset-x-0 bottom-4 z-[60] flex items-center justify-center w-full pointer-events-none px-4">
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className={`pointer-events-auto flex items-center justify-between w-full max-w-[320px] rounded-full border ${borderClass} ${bgClass} backdrop-blur-[64px] backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] p-1 transition-colors duration-500`}
+        >
+          {/* Back */}
+          <motion.button style={{ color: textColor }} onClick={() => window.history.back()} className={`grid h-10 w-10 place-items-center rounded-full hover:text-gold ${hoverBgClass} transition-colors active:scale-90`}>
+            <ChevronLeft className="h-5 w-5" />
+          </motion.button>
+          
+          {/* Next */}
+          <motion.button style={{ color: textColor }} onClick={() => window.history.forward()} className={`grid h-10 w-10 place-items-center rounded-full hover:text-gold ${hoverBgClass} transition-colors active:scale-90`}>
+            <ChevronRight className="h-5 w-5" />
+          </motion.button>
+          
+          {/* Refresh */}
+          <motion.button style={{ color: textColor }} onClick={() => window.location.reload()} className={`grid h-10 w-10 place-items-center rounded-full hover:text-gold ${hoverBgClass} transition-colors active:scale-90`}>
+            <RotateCw className="h-4.5 w-4.5" />
+          </motion.button>
+          
+          {/* Divider */}
+          <div className={`h-6 w-[1px] mx-0.5 ${overLightBg ? 'bg-black/10' : 'bg-white/20'}`} />
+
+          {/* Search */}
+          <motion.button style={{ color: textColor }} onClick={() => setSearchOpen(true)} className={`grid h-10 w-10 place-items-center rounded-full hover:text-emerald ${hoverBgClass} transition-colors active:scale-90`}>
+            <Search className="h-4.5 w-4.5" />
+          </motion.button>
+          
+          {/* Theme */}
+          <motion.button style={{ color: textColor }} onClick={toggle} className={`grid h-10 w-10 place-items-center rounded-full hover:text-emerald ${hoverBgClass} transition-colors active:scale-90`}>
+            {isDark ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
+          </motion.button>
+        </motion.div>
       </div>
 
       {/* ── Search Modal Engine (Google/YouTube Inspired overlay) ── */}
@@ -405,7 +525,8 @@ export function Nav() {
           >
             <button
               onClick={() => setMenuOpen(false)}
-              className="absolute top-5 right-5 grid h-9 w-9 place-items-center rounded-full border border-white/10 text-fog/60 hover:text-fog"
+              className="absolute top-5 right-5 grid h-9 w-9 place-items-center rounded-full border border-white/10 text-fog/60 hover:text-fog transition-colors active:scale-95"
+              aria-label="Close menu"
             >
               <X className="h-4 w-4" />
             </button>
@@ -454,18 +575,6 @@ export function Nav() {
             )}
 
             <div className="mt-auto flex flex-col gap-3">
-              {/* Mobile Search Button */}
-              <button
-                onClick={() => {
-                  setMenuOpen(false);
-                  setSearchOpen(true);
-                }}
-                className="flex items-center justify-center gap-2 rounded-full py-3.5 text-sm text-fog border border-white/15 bg-white/[0.04]"
-              >
-                <Search className="h-4 w-4 text-gold" />
-                Search Site
-              </button>
-
               <Link
                 to="/donate"
                 onClick={() => setMenuOpen(false)}
@@ -487,19 +596,6 @@ export function Nav() {
               </Link>
             </div>
 
-            <div className="mt-6 border-t border-white/[0.06] pt-5">
-              <button
-                onClick={toggle}
-                className="flex items-center gap-3 text-sm text-fog/55 transition hover:text-fog"
-              >
-                {isDark ? (
-                  <Sun className="h-4 w-4" />
-                ) : (
-                  <Moon className="h-4 w-4" />
-                )}
-                {isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-              </button>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -516,6 +612,8 @@ export function Nav() {
           />
         )}
       </AnimatePresence>
+
+
     </>
   );
 }

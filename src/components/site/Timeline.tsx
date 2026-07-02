@@ -53,28 +53,40 @@ const milestones = [
 ];
 
 function AnimatedLine() {
-  const ref = useRef<SVGSVGElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-10%" });
-
   return (
-    <svg
-      ref={ref}
-      className="absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-1 z-0 overflow-visible"
-      height="100%"
-    >
-      <motion.line
-        x1="2"
-        y1="0"
-        x2="2"
-        y2="100%"
-        stroke="var(--color-gold)"
-        strokeWidth="2"
-        strokeDasharray="4 4"
-        initial={{ pathLength: 0, opacity: 0.1 }}
-        animate={inView ? { pathLength: 1, opacity: 0.45 } : {}}
-        transition={{ duration: 2.2, ease: "easeInOut" }}
-      />
-    </svg>
+    <div className="absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-[160px] z-0 overflow-hidden">
+      {/* Faint static background track */}
+      <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-gradient-to-b from-transparent via-[color:var(--gold)]/10 to-transparent rounded-full" />
+      
+      {/* Sticky viewport container fixes mobile rendering issues on tall sections */}
+      <div className="sticky top-0 h-screen w-full pointer-events-none">
+        {/* The Comet / Meteor */}
+        <motion.div
+          className="absolute w-full h-[60vh] flex flex-col items-center justify-end"
+          initial={{ top: "-60vh" }}
+          animate={{ top: "100vh" }}
+          transition={{
+            duration: 4.5, // Slower speed
+            ease: "easeIn",
+            repeat: Infinity,
+            repeatDelay: 4.0,
+          }}
+          style={{ willChange: "top" }}
+        >
+          {/* Tapered Fiery Tail */}
+          <div 
+            className="w-[12px] h-full opacity-90 blur-[1px]" 
+            style={{ 
+              background: "linear-gradient(to bottom, transparent, rgba(255,59,0,0.6) 40%, #ff9d00 80%, #ffffff)",
+              clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)" 
+            }} 
+          />
+          
+          {/* Meteor Core / Asteroid Head */}
+          <div className="relative w-[16px] h-[16px] bg-[#ffffff] rounded-full shadow-[0_0_50px_25px_rgba(255,110,0,0.8),0_0_20px_10px_rgba(255,255,255,1)] -mt-2" />
+        </motion.div>
+      </div>
+    </div>
   );
 }
 

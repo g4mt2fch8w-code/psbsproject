@@ -78,10 +78,11 @@ const stats = [
 
 function ForestsPage() {
   return (
-    <main className="relative min-h-screen bg-ink text-foreground page-enter">
+    <>
+      <Nav />
+      <main className="relative min-h-screen bg-ink text-foreground page-enter">
       <SmoothScroll />
       <CursorGlow />
-      <Nav />
 
       {/* ── Hero ── */}
       <section className="pt-28 pb-24 px-6 relative overflow-hidden">
@@ -209,5 +210,6 @@ function ForestsPage() {
 
       <Footer />
     </main>
+    </>
   );
 }

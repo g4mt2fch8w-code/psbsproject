@@ -122,10 +122,11 @@ function Tilt({ children }: { children: React.ReactNode }) {
 
 function WildlifePage() {
   return (
-    <main className="relative min-h-screen bg-ink text-foreground page-enter">
+    <>
+      <Nav />
+      <main className="relative min-h-screen bg-ink text-foreground page-enter">
       <SmoothScroll />
       <CursorGlow />
-      <Nav />
 
       {/* ── Hero ── */}
       <section className="relative pt-32 pb-24 overflow-hidden bg-ink">
@@ -325,5 +326,6 @@ function WildlifePage() {
 
       <Footer />
     </main>
+    </>
   );
 }

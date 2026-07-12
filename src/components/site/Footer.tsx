@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Leaf, Instagram, Twitter, Youtube, Mail } from "lucide-react";
+import psbsLogo from "@/assets/psbs_logo.png";
 
 const exploreLinks = [
   { label: "About", to: "/about" as const },
@@ -21,13 +22,13 @@ export function Footer() {
       <div className="mx-auto grid max-w-[1500px] gap-12 px-6 md:px-12 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <div className="flex items-center gap-3">
-            <span className="grid h-11 w-11 place-items-center rounded-full border border-emerald/30 bg-canopy/60">
-              <Leaf className="h-5 w-5 text-emerald" />
+            <span className="grid h-12 w-12 place-items-center rounded-full border border-emerald/30 bg-white/5 overflow-hidden p-1">
+              <img src={psbsLogo} alt="PSBS Logo" className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" />
             </span>
             <div>
               <div className="font-display text-xl text-fog">PSBS</div>
               <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-                Paryavaran Bahu Uddeshiya Sanstha
+                Paryavaran Sanrakshan Bahuddeshiya Sanstha
               </div>
             </div>
           </div>

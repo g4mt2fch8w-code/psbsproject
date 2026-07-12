@@ -17,6 +17,7 @@ import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ProjectTRouteImport } from './routes/project-t'
 import { Route as NewsTRouteImport } from './routes/news-t'
 import { Route as NewsRouteImport } from './routes/news'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ForestsRouteImport } from './routes/forests'
 import { Route as DonateRouteImport } from './routes/donate'
@@ -64,6 +65,11 @@ const NewsRoute = NewsRouteImport.update({
   path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/donate': typeof DonateRoute
   '/forests': typeof ForestsRoute
   '/gallery': typeof GalleryRoute
+  '/login': typeof LoginRoute
   '/news': typeof NewsRoute
   '/news-t': typeof NewsTRoute
   '/project-t': typeof ProjectTRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/donate': typeof DonateRoute
   '/forests': typeof ForestsRoute
   '/gallery': typeof GalleryRoute
+  '/login': typeof LoginRoute
   '/news': typeof NewsRoute
   '/news-t': typeof NewsTRoute
   '/project-t': typeof ProjectTRoute
@@ -135,6 +143,7 @@ export interface FileRoutesById {
   '/donate': typeof DonateRoute
   '/forests': typeof ForestsRoute
   '/gallery': typeof GalleryRoute
+  '/login': typeof LoginRoute
   '/news': typeof NewsRoute
   '/news-t': typeof NewsTRoute
   '/project-t': typeof ProjectTRoute
@@ -153,6 +162,7 @@ export interface FileRouteTypes {
     | '/donate'
     | '/forests'
     | '/gallery'
+    | '/login'
     | '/news'
     | '/news-t'
     | '/project-t'
@@ -169,6 +179,7 @@ export interface FileRouteTypes {
     | '/donate'
     | '/forests'
     | '/gallery'
+    | '/login'
     | '/news'
     | '/news-t'
     | '/project-t'
@@ -185,6 +196,7 @@ export interface FileRouteTypes {
     | '/donate'
     | '/forests'
     | '/gallery'
+    | '/login'
     | '/news'
     | '/news-t'
     | '/project-t'
@@ -202,6 +214,7 @@ export interface RootRouteChildren {
   DonateRoute: typeof DonateRoute
   ForestsRoute: typeof ForestsRoute
   GalleryRoute: typeof GalleryRoute
+  LoginRoute: typeof LoginRoute
   NewsRoute: typeof NewsRoute
   NewsTRoute: typeof NewsTRoute
   ProjectTRoute: typeof ProjectTRoute
@@ -270,6 +283,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gallery': {
       id: '/gallery'
       path: '/gallery'
@@ -322,6 +342,7 @@ const rootRouteChildren: RootRouteChildren = {
   DonateRoute: DonateRoute,
   ForestsRoute: ForestsRoute,
   GalleryRoute: GalleryRoute,
+  LoginRoute: LoginRoute,
   NewsRoute: NewsRoute,
   NewsTRoute: NewsTRoute,
   ProjectTRoute: ProjectTRoute,

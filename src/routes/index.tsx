@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Paryavaran Bahu Uddeshiya Sanstha, Bhandara — a wildlife, forest and environment NGO restoring Vidarbha's living canopy.",
+          "Paryavaran Sanrakshan Bahuddeshiya Sanstha, Bhandara — a wildlife, forest and environment NGO restoring Vidarbha's living canopy.",
       },
       {
         property: "og:title",

@@ -109,7 +109,7 @@ export function Hero() {
         >
           <span className="h-px w-12 bg-gold/60" />
           <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">
-            Paryavaran Bahu Uddeshiya Sanstha
+            Paryavaran Sanrakshan Bahuddeshiya Sanstha
           </span>
         </motion.div>
 

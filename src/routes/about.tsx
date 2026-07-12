@@ -89,7 +89,7 @@ function AboutPage() {
         </Reveal>
         <Reveal delay={0.15}>
           <p className="mt-8 text-lg md:text-xl text-fog/70 leading-relaxed max-w-2xl mx-auto">
-            Paryavaran Bahu Uddeshiya Sanstha (PSBS) is a registered Wildlife,
+            Paryavaran Sanrakshan Bahuddeshiya Sanstha (PSBS) is a registered Wildlife,
             Forest, and Environment NGO operating from Bhandara, Maharashtra —
             the green heart of Vidarbha.
           </p>

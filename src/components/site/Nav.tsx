@@ -4,10 +4,11 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
-import { Leaf, Sun, Moon, Menu, X, Sparkles, Search, Home, ArrowRight, FileText, HelpCircle, ChevronLeft, ChevronRight, RotateCw } from "lucide-react";
+import { Leaf, Sun, Moon, Menu, X, Sparkles, Search, Home, ArrowRight, FileText, HelpCircle, ChevronLeft, ChevronRight, RotateCw, User } from "lucide-react";
 import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "@/hooks/useTheme";
+import psbsLogo from "@/assets/psbs_logo.png";
 
 // Added "Home" page link at the beginning as requested
 const pageLinks = [
@@ -245,8 +246,8 @@ export function Nav() {
         >
           {/* Logo / Brand */}
           <Link to="/" className="group flex items-center gap-2 shrink-0">
-            <span className="relative grid h-8 w-8 md:h-9 md:w-9 place-items-center rounded-full border border-emerald/30 bg-canopy/60 transition group-hover:border-emerald/60">
-              <Leaf className="h-4 w-4 text-emerald" />
+            <span className="relative grid h-8 w-8 md:h-10 md:w-10 place-items-center rounded-full border border-emerald/30 bg-white/5 transition group-hover:border-emerald/60 p-0.5 overflow-hidden">
+              <img src={psbsLogo} alt="PSBS Logo" className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" />
               <span
                 className="absolute inset-0 rounded-full opacity-0 transition group-hover:opacity-100"
                 style={{ boxShadow: "var(--shadow-emerald)" }}
@@ -263,14 +264,14 @@ export function Nav() {
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden items-center gap-3 xl:gap-5 lg:flex pl-2">
+          <nav className="hidden items-center gap-2 xl:gap-4 lg:flex pl-2 overflow-hidden">
             {pageLinks.map((l) => (
               <motion.div key={l.label} style={{ color: textColor }}>
                 <Link
                   to={l.href as any}
-                  className="relative text-[13px] md:text-sm tracking-wide opacity-80 transition hover:opacity-100 [&.active]:text-gold group flex items-center gap-1.5"
+                  className="relative text-[11px] lg:text-[12px] xl:text-[13px] tracking-wide opacity-80 transition hover:opacity-100 [&.active]:text-gold group flex items-center gap-1 xl:gap-1.5 whitespace-nowrap"
                 >
-                  {l.label === "Home" && <Home className="h-3.5 w-3.5 opacity-60" />}
+                  {l.label === "Home" && <Home className="h-3 w-3 xl:h-3.5 xl:w-3.5 opacity-60" />}
                   {l.label}
                   <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
                 </Link>
@@ -281,7 +282,7 @@ export function Nav() {
                 <motion.div key={l.label} style={{ color: textColor }}>
                   <a
                     href={l.href}
-                    className="relative text-[13px] md:text-sm tracking-wide opacity-60 transition hover:opacity-90 group"
+                    className="relative text-[11px] lg:text-[12px] xl:text-[13px] tracking-wide opacity-60 transition hover:opacity-90 group whitespace-nowrap"
                   >
                     {l.label}
                     <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gold/60 transition-all duration-300 group-hover:w-full" />
@@ -329,7 +330,6 @@ export function Nav() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
-            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.85, transition: { type: "spring", stiffness: 400, damping: 17 } }}
             onClick={() => setSearchOpen(true)}
             className={`grid h-10 w-10 place-items-center rounded-full border ${borderClass} ${bgClass} backdrop-blur-[64px] backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:text-emerald transition-colors`}
@@ -350,6 +350,23 @@ export function Nav() {
           >
             {isDark ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
           </motion.button>
+
+          {/* Account Login */}
+          <motion.div
+            style={{ color: textColor }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.85, transition: { type: "spring", stiffness: 400, damping: 17 } }}
+          >
+            <Link
+              to="/login"
+              className={`grid h-10 w-10 place-items-center rounded-full border ${borderClass} ${bgClass} backdrop-blur-[64px] backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:text-emerald ${hoverBgClass} transition-colors`}
+              aria-label="Account Login"
+            >
+              <User className="h-4.5 w-4.5" />
+            </Link>
+          </motion.div>
 
           {/* 7. Donate */}
           <Link
@@ -402,6 +419,13 @@ export function Nav() {
           <motion.button style={{ color: textColor }} onClick={toggle} className={`grid h-10 w-10 place-items-center rounded-full hover:text-emerald ${hoverBgClass} transition-colors active:scale-90`}>
             {isDark ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
           </motion.button>
+          
+          {/* User Login */}
+          <Link to="/login" aria-label="Account Login">
+            <motion.div style={{ color: textColor }} className={`grid h-10 w-10 place-items-center rounded-full hover:text-emerald ${hoverBgClass} transition-colors active:scale-90`}>
+              <User className="h-4.5 w-4.5" />
+            </motion.div>
+          </Link>
         </motion.div>
       </div>
 

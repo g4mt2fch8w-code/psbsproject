@@ -3,15 +3,36 @@ import { motion } from "framer-motion";
 import { ClientOnly } from "@/components/effects/ClientOnly";
 import { Suspense } from "react";
 
-const growth = [12, 18, 22, 30, 36, 45, 58, 72, 88, 102, 124, 148, 168, 184];
-const wildlife = [
+export interface WildlifeData {
+  label: string;
+  value: number;
+  max: number;
+  color: string;
+}
+
+export interface DataVizProps {
+  eyebrow?: string;
+  headingPart1?: string;
+  headingHighlight?: string;
+  headingPart2?: string;
+  treesRestoredTitle?: string;
+  treesRestoredValue?: string;
+  treesRestoredBadge?: string;
+  treesGrowthData?: number[];
+  wildlifeCensusTitle?: string;
+  wildlifeCensusSubtitle?: string;
+  wildlifeData?: WildlifeData[];
+}
+
+const defaultGrowth = [12, 18, 22, 30, 36, 45, 58, 72, 88, 102, 124, 148, 168, 184];
+const defaultWildlife = [
   { label: "Tigers", value: 38, max: 50, color: "#C9A13B" },
   { label: "Leopards", value: 22, max: 50, color: "#F0D87A" },
   { label: "Hornbills", value: 210, max: 250, color: "#2E7D32" },
   { label: "Spotted Deer", value: 4200, max: 5000, color: "#0F3B1D" },
 ];
 
-function AreaChart() {
+function AreaChart({ growth = defaultGrowth }: { growth?: number[] }) {
   const w = 600;
   const h = 240;
   const max = Math.max(...growth);
@@ -79,7 +100,19 @@ function AreaChart() {
   );
 }
 
-export function DataViz() {
+export function DataViz({
+  eyebrow = "Conservation Dashboard",
+  headingPart1 = "A canopy ",
+  headingHighlight = "measured",
+  headingPart2 = ",\nseason by season.",
+  treesRestoredTitle = "Trees Restored",
+  treesRestoredValue = "184,217",
+  treesRestoredBadge = "+38% YoY",
+  treesGrowthData = defaultGrowth,
+  wildlifeCensusTitle = "Wildlife Census",
+  wildlifeCensusSubtitle = "Population snapshot",
+  wildlifeData = defaultWildlife
+}: DataVizProps) {
   return (
     <section id="dataviz" className="relative overflow-hidden border-y border-white/[0.06] bg-canopy/30 py-32 md:py-44">
       {/* 3D Background */}
@@ -92,14 +125,14 @@ export function DataViz() {
           <div className="flex items-center gap-4">
             <span className="h-px w-10 bg-gold/60" />
             <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">
-              Conservation Dashboard
+              {eyebrow}
             </span>
           </div>
         </Reveal>
         <Reveal delay={0.1}>
-          <h2 className="mt-8 max-w-4xl font-display text-[clamp(2.5rem,5.5vw,5rem)] leading-[1.02] text-fog">
-            A canopy <em className="text-gold-gradient not-italic">measured</em>
-            , season by season.
+          <h2 className="mt-8 max-w-4xl font-display text-[clamp(2.5rem,5.5vw,5rem)] leading-[1.02] text-fog whitespace-pre-wrap">
+            {headingPart1}<em className="text-gold-gradient not-italic">{headingHighlight}</em>
+            {headingPart2}
           </h2>
         </Reveal>
 
@@ -110,25 +143,25 @@ export function DataViz() {
               <div className="flex items-end justify-between">
                 <div>
                   <div className="text-[10px] uppercase tracking-[0.3em] text-fog/50">
-                    Trees Restored
+                    {treesRestoredTitle}
                   </div>
                   <div className="mt-2 font-display text-5xl text-fog text-glow">
-                    184,217
+                    {treesRestoredValue}
                   </div>
                 </div>
                 <div className="rounded-full border border-emerald/30 bg-emerald/10 px-3 py-1 text-xs text-emerald">
-                  +38% YoY
+                  {treesRestoredBadge}
                 </div>
               </div>
               <div className="mt-8 h-48 md:h-64">
-                <AreaChart />
+                <AreaChart growth={treesGrowthData} />
               </div>
               <div className="mt-4 flex justify-between text-[10px] uppercase tracking-[0.3em] text-fog/40">
-                <span>2011</span>
-                <span>2015</span>
-                <span>2019</span>
+                <span>2022</span>
                 <span>2023</span>
+                <span>2024</span>
                 <span>2025</span>
+                <span>2026</span>
               </div>
             </div>
           </Reveal>
@@ -137,13 +170,13 @@ export function DataViz() {
           <Reveal delay={0.1}>
             <div className="glass-card h-full rounded-3xl p-5 md:p-8">
               <div className="text-[10px] uppercase tracking-[0.3em] text-fog/50">
-                Wildlife Census
+                {wildlifeCensusTitle}
               </div>
               <div className="mt-2 font-display text-3xl text-fog">
-                Population snapshot
+                {wildlifeCensusSubtitle}
               </div>
               <ul className="mt-8 space-y-6">
-                {wildlife.map((w, i) => (
+                {wildlifeData.map((w, i) => (
                   <li key={w.label}>
                     <div className="flex items-baseline justify-between">
                       <span className="text-sm text-fog/80">{w.label}</span>

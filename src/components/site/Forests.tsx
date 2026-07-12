@@ -1,9 +1,26 @@
 import { Reveal } from "@/components/effects/Reveal";
 import canopy from "@/assets/canopy.jpg";
 import vidarbhaMap from "@/assets/vidarbha_map.png";
-import { useState } from "react";
+export interface ForestReserve {
+  name: string;
+  area: string;
+  x: number;
+  y: number;
+}
 
-const initialReserves = [
+export interface ForestsProps {
+  eyebrow?: string;
+  headingPart1?: string;
+  headingHighlight?: string;
+  headingPart2?: string;
+  description?: string;
+  bgImage?: string;
+  mapImage?: string;
+  reserves?: ForestReserve[];
+  mapCaption?: string;
+}
+
+const initialReserves: ForestReserve[] = [
   { name: "Tadoba-Andhari Tiger Reserve", area: "~ 1700 km²", x: 34.9, y: 81.4 },
   { name: "Lakhandur Forest", area: "Unknown", x: 49.1, y: 52.4 },
   { name: "Wadsa Forest", area: "Unknown", x: 59.3, y: 64.1 },
@@ -15,25 +32,26 @@ const initialReserves = [
   { name: "Umred Karhandla Wildlife Sanctuary", area: "195.68 km²", x: 34.5, y: 49.1 },
   { name: "Gosikhurd Wetlands", area: "189 km² (SURROUNDING AREA)", x: 41.9, y: 45.2 },
   { name: "Bhandara Territorial Forest", area: "1,343 km²", x: 39.4, y: 32.3 },
+  { name: "Sindewahi Forest", area: "Unknown", x: 42.0, y: 72.0 },
+  { name: "Chimur Forest", area: "Unknown", x: 37.0, y: 68.0 },
 ];
 
-export function Forests() {
-  const [mapImage, setMapImage] = useState(vidarbhaMap);
-
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => setMapImage(e.target?.result as string);
-      reader.readAsDataURL(file);
-    }
-  };
-
+export function Forests({
+  eyebrow = "Living Geography",
+  headingPart1 = "The forests we ",
+  headingHighlight = "walk",
+  headingPart2 = ".",
+  description = "Six landscapes across Vidarbha — each one a story, a refuge, a future.",
+  bgImage = canopy,
+  mapImage: propMapImage = vidarbhaMap,
+  mapCaption = "Vidarbha · Maharashtra (Interactive Map)",
+  reserves = initialReserves
+}: ForestsProps) {
   return (
     <section id="forests" className="relative overflow-hidden py-32 md:py-44">
       <div className="absolute inset-0 opacity-20">
         <img
-          src={canopy}
+          src={bgImage}
           alt=""
           aria-hidden
           loading="lazy"
@@ -49,20 +67,20 @@ export function Forests() {
           <div className="flex items-center gap-4">
             <span className="h-px w-10 bg-gold/60" />
             <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">
-              Living Geography
+              {eyebrow}
             </span>
           </div>
         </Reveal>
         <Reveal delay={0.1}>
-          <h2 className="mt-8 max-w-4xl font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.02] text-fog">
-            The forests we{" "}
-            <em className="text-gold-gradient not-italic">walk</em>.
+          <h2 className="mt-8 max-w-4xl font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.02] text-fog whitespace-pre-wrap">
+            {headingPart1}
+            <em className="text-gold-gradient not-italic">{headingHighlight}</em>
+            {headingPart2}
           </h2>
         </Reveal>
         <Reveal delay={0.2}>
-          <p className="mt-6 max-w-xl text-fog/55">
-            Six landscapes across Vidarbha — each one a story, a refuge, a
-            future.
+          <p className="mt-6 max-w-xl text-fog/55 whitespace-pre-wrap">
+            {description}
           </p>
         </Reveal>
 
@@ -71,8 +89,8 @@ export function Forests() {
           <Reveal delay={0.2} className="lg:col-span-7">
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/[0.06] bg-canopy/40 backdrop-blur">
               <div className="absolute inset-0 bg-[#0F3B1D]/20">
-                <img src={mapImage} alt="Vidarbha Map" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
-                {initialReserves.map((r) => (
+                <img src={propMapImage} alt="Vidarbha Map" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
+                {reserves.map((r) => (
                   <div 
                     key={r.name} 
                     className="absolute w-2.5 h-2.5 bg-gold rounded-full transform -translate-x-1/2 -translate-y-1/2 group cursor-pointer transition-transform hover:scale-[2] shadow-[0_0_8px_rgba(201,161,59,0.8)]"
@@ -85,7 +103,7 @@ export function Forests() {
                 ))}
               </div>
               <span className="absolute bottom-4 left-5 text-[10px] uppercase tracking-[0.3em] text-fog/40">
-                Vidarbha · Maharashtra (Interactive Map)
+                {mapCaption}
               </span>
             </div>
           </Reveal>
@@ -93,7 +111,7 @@ export function Forests() {
           {/* List */}
           <div className="lg:col-span-5 flex flex-col gap-4">
             <ul className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
-              {initialReserves.map((r, i) => (
+              {reserves.map((r, i) => (
                 <Reveal key={r.name} delay={i * 0.06}>
                   <li className="group flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-6 py-6 transition hover:pl-3">
                     <span className="font-display text-2xl text-fog md:text-3xl">

@@ -1,22 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SmoothScroll } from "@/components/effects/SmoothScroll";
 import { CursorGlow } from "@/components/effects/CursorGlow";
-
 import { Nav } from "@/components/site/Nav";
-import { Hero } from "@/components/site/Hero";
-import { Mission } from "@/components/site/Mission";
-import { Impact } from "@/components/site/Impact";
-import { Wildlife } from "@/components/site/Wildlife";
-import { Forests } from "@/components/site/Forests";
-import { DataViz } from "@/components/site/DataViz";
-import { ClientOnly } from "@/components/effects/ClientOnly";
-
-import { Journal } from "@/components/site/Journal";
-import { Join } from "@/components/site/Join";
 import { Footer } from "@/components/site/Footer";
-import { Timeline } from "@/components/site/Timeline";
-import { Testimonials } from "@/components/site/Testimonials";
-import { Partners } from "@/components/site/Partners";
+import { PageRenderer } from "@/components/site/PageRenderer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,26 +30,14 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <>
-      <Nav />
-      <main className="relative min-h-screen bg-ink text-foreground">
+    <div className="bg-ink min-h-screen text-fog flex flex-col font-sans selection:bg-gold/30 selection:text-gold-light overflow-x-hidden">
       <SmoothScroll />
       <CursorGlow />
-
-      <Hero />
-      <Mission />
-      <Timeline />
-
-      <Impact />
-      <Wildlife />
-      <Forests />
-      <DataViz />
-      <Testimonials />
-      <Journal />
-      <Partners />
-      <Join />
+      <Nav />
+      <main className="flex-1">
+        <PageRenderer pageId="home" />
+      </main>
       <Footer />
-    </main>
-    </>
+    </div>
   );
 }

@@ -6,7 +6,25 @@ import { Fireflies } from "@/components/effects/Fireflies";
 import { Link } from "@tanstack/react-router";
 
 
-export function Hero() {
+export interface HeroProps {
+  organizationName?: string;
+  titleWords?: string[];
+  description?: string;
+  primaryButtonText?: string;
+  primaryButtonLink?: string;
+  secondaryButtonText?: string;
+  secondaryButtonLink?: string;
+}
+
+export function Hero({
+  organizationName = "Paryavaran Sanrakshan Bahuddeshiya Sanstha",
+  titleWords = ["Protecting", "Forests.", "Preserving", "Futures."],
+  description = "A movement born in the wild heart of Bhandara — restoring forests, protecting wildlife, and walking alongside the communities who call these lands home.",
+  primaryButtonText = "Begin the Journey",
+  primaryButtonLink = "#mission",
+  secondaryButtonText = "Donate & Support",
+  secondaryButtonLink = "/donate"
+}: HeroProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -110,12 +128,12 @@ export function Hero() {
         >
           <span className="h-px w-12 bg-gold/60" />
           <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">
-            Paryavaran Sanrakshan Bahuddeshiya Sanstha
+            {organizationName}
           </span>
         </motion.div>
 
         <h1 className="mt-8 max-w-[15ch] font-display text-[clamp(3.5rem,9vw,9.5rem)] leading-[0.95] tracking-tight text-white/95">
-          {["Protecting", "Forests.", "Preserving", "Futures."].map((w, i) => (
+          {titleWords.map((w, i) => (
             <motion.span
               key={w + i}
               initial={{ opacity: 0, y: 60, filter: "blur(20px)" }}
@@ -141,9 +159,7 @@ export function Hero() {
           transition={{ duration: 1, delay: 1.4 }}
           className="mt-10 max-w-xl text-base leading-relaxed text-white/70 md:text-lg"
         >
-          A movement born in the wild heart of Bhandara — restoring forests,
-          protecting wildlife, and walking alongside the communities who call
-          these lands home.
+          {description}
         </motion.p>
 
         <motion.div
@@ -153,21 +169,21 @@ export function Hero() {
           className="mt-10 flex flex-wrap items-center gap-4"
         >
           <a
-            href="#mission"
+            href={primaryButtonLink}
             className="group inline-flex items-center gap-3 rounded-full px-7 py-3.5 text-sm font-medium text-ink transition hover:translate-y-[-2px]"
             style={{
               background: "var(--gradient-gold)",
               boxShadow: "var(--shadow-glow)",
             }}
           >
-            Begin the Journey
+            {primaryButtonText}
             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
           </a>
           <Link
-            to="/donate"
+            to={secondaryButtonLink}
             className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-7 py-3.5 text-sm font-medium text-gold backdrop-blur transition-all duration-300 hover:scale-105 hover:bg-gold/15 hover:shadow-[0_0_20px_rgba(201,161,59,0.3)]"
           >
-            Donate & Support
+            {secondaryButtonText}
           </Link>
         </motion.div>
       </motion.div>

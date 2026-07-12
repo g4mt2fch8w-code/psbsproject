@@ -5,15 +5,14 @@ import { Reveal } from "@/components/effects/Reveal";
 
 const partners = [
   "Maharashtra Forest Department",
-  "Wildlife Institute of India",
-  "Bombay Natural History Society",
+  "Habitat Conservation Society",
+  "Satpuda Foundation",
+  "TTC Nagpur",
   "WWF India",
-  "Wildlife Trust of India",
   "National Tiger Conservation Authority",
-  "UNDP GEF Small Grants",
-  "Tata Trusts",
-  "Vidarbha Nature Conservation Society",
-  "Nagpur University",
+  "Wildlife Trust of India",
+  "SEVA NGO Gondia",
+  "Bombay Natural History Society",
 ];
 
 export function Partners() {

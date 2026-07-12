@@ -35,7 +35,7 @@ export function Footer() {
           <p className="mt-6 max-w-md text-sm leading-relaxed text-fog/55">
             A registered Wildlife · Forest · Environment NGO operating from the
             heart of Bhandara, Vidarbha — guarding the central forests of India
-            since our first sapling took root in 2011.
+            since our first sapling took root in 2022.
           </p>
           <div className="mt-6 flex gap-3">
             {[Instagram, Twitter, Youtube, Mail].map((I, i) => (

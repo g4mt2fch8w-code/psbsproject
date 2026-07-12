@@ -3,14 +3,20 @@ import { useEffect, useRef, useState, Suspense } from "react";
 import { useInView, motion, useSpring, useMotionValue } from "framer-motion";
 import { ClientOnly } from "../effects/ClientOnly";
 
-const stats = [
-  { value: 0, suffix: "+", label: "Trees Restored" },
-  { value: 5780, suffix: " ha", label: "Hectares Protected" },
-  { value: 24, suffix: "", label: "Wildlife Initiatives" },
-  { value: 132, suffix: "", label: "Villages Engaged" },
-  { value: 96, suffix: "", label: "Camera Traps" },
-  { value: 218, suffix: "", label: "Species Documented" },
-];
+export interface StatData {
+  label: string;
+  stringValue?: string;
+  value?: number;
+  suffix?: string;
+}
+
+export interface ImpactProps {
+  eyebrow?: string;
+  headingPart1?: string;
+  headingHighlight?: string;
+  headingPart2?: string;
+  statsData?: StatData[];
+}
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -38,7 +44,20 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
   );
 }
 
-export function Impact() {
+export function Impact({
+  eyebrow = "Measured in Heartbeats",
+  headingPart1 = "Conservation, in ",
+  headingHighlight = "numbers",
+  headingPart2 = " that breathe.",
+  statsData = [
+    { stringValue: "Banyan, Neem, Pipal...", label: "Native Trees Restored" },
+    { stringValue: "A lot of :)", label: "Hectares Protected" },
+    { value: 150, suffix: "+", label: "Wildlife Initiatives" },
+    { value: 250, suffix: "+", label: "Villages Engaged" },
+    { value: 160, suffix: "+", label: "Camera Traps" },
+    { stringValue: "~200", label: "Species Documented" },
+  ]
+}: ImpactProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -55,20 +74,20 @@ export function Impact() {
           <div className="flex items-center gap-4">
             <span className="h-px w-10 bg-gold/60" />
             <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">
-              Measured in Heartbeats
+              {eyebrow}
             </span>
           </div>
         </Reveal>
         <Reveal delay={0.1}>
-          <h2 className="mt-8 max-w-4xl font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.02] text-fog">
-            Conservation, in{" "}
-            <em className="text-gold-gradient not-italic">numbers</em> that
-            breathe.
+          <h2 className="mt-8 max-w-4xl font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.02] text-fog whitespace-pre-wrap">
+            {headingPart1}
+            <em className="text-gold-gradient not-italic">{headingHighlight}</em>
+            {headingPart2}
           </h2>
         </Reveal>
 
         <div className="mt-20 grid gap-px overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.04] sm:grid-cols-2 lg:grid-cols-3">
-          {stats.map((s, i) => {
+          {statsData.map((s, i) => {
             const viewRef = useRef<HTMLDivElement>(null);
             const x = useMotionValue(0);
             const y = useMotionValue(0);
@@ -107,8 +126,8 @@ export function Impact() {
                       y: springY,
                     }}
                   >
-                    <span className="block font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-none text-fog text-glow">
-                      <Counter value={s.value} suffix={s.suffix} />
+                    <span className={`block font-display leading-none text-fog text-glow ${s.stringValue ? 'text-[clamp(1.8rem,3vw,3rem)]' : 'text-[clamp(2.5rem,5vw,4.5rem)]'}`}>
+                      {s.stringValue ? s.stringValue : <Counter value={s.value || 0} suffix={s.suffix || ""} />}
                     </span>
                     <span className="mt-4 block text-xs uppercase tracking-[0.3em] text-fog/55">
                       {s.label}

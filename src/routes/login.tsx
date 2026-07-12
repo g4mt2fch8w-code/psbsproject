@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Lock, Mail, Leaf, Loader2, ShieldCheck, ArrowLeft } from "lucide-react";
@@ -20,16 +20,26 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleLogin = (e: React.FormEvent) => {
+  const navigate = useNavigate();
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
     
-    // Simulate login for now
-    setTimeout(() => {
+    try {
+      // Temporary local testing bypass
+      localStorage.setItem('temp_admin_auth', 'true');
+      navigate({ to: '/admin/dashboard' });
+      return;
+
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate({ to: '/admin/dashboard' });
+    } catch (err: any) {
+      setError(err.message || 'Failed to login');
+    } finally {
       setLoading(false);
-      setError("Portal access restricted. Please contact administration.");
-    }, 1500);
+    }
   };
 
   return (

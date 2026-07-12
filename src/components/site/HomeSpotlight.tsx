@@ -3,13 +3,13 @@ import { motion } from "framer-motion";
 
 const items = [
   "184,217 Trees Restored",
-  "5,780 Hectares Protected",
+  "A lot of Hectares Protected",
   "38 Tigers in Reserves",
   "132 Villages Engaged",
   "218 Species Documented",
   "96 Camera Traps Active",
   "24 Wildlife Initiatives",
-  "14 Years of Field Work",
+  "4 Years of Field Work",
 ];
 
 export function StatsMarquee() {
@@ -73,10 +73,10 @@ export function HomeSpotlight() {
         </Reveal>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { value: "184K+", label: "Trees Restored", sub: "Since 2011" },
+            { value: "184K+", label: "Trees Restored", sub: "Since 2022" },
             { value: "38", label: "Tigers Tracked", sub: "Across reserves" },
             {
-              value: "5,780",
+              value: "A lot of",
               label: "Hectares Protected",
               sub: "Forest & wetland",
             },

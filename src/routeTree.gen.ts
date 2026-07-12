@@ -24,6 +24,11 @@ import { Route as DonateRouteImport } from './routes/donate'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminProfileRouteImport } from './routes/admin/profile'
+import { Route as AdminMembersRouteImport } from './routes/admin/members'
+import { Route as AdminDriveRouteImport } from './routes/admin/drive'
+import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
+import { Route as AdminCmsRouteImport } from './routes/admin/cms'
 
 const WildlifeTRoute = WildlifeTRouteImport.update({
   id: '/wildlife-t',
@@ -100,6 +105,31 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminProfileRoute = AdminProfileRouteImport.update({
+  id: '/admin/profile',
+  path: '/admin/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMembersRoute = AdminMembersRouteImport.update({
+  id: '/admin/members',
+  path: '/admin/members',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDriveRoute = AdminDriveRouteImport.update({
+  id: '/admin/drive',
+  path: '/admin/drive',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCmsRoute = AdminCmsRouteImport.update({
+  id: '/admin/cms',
+  path: '/admin/cms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -117,6 +147,11 @@ export interface FileRoutesByFullPath {
   '/volunteer-t': typeof VolunteerTRoute
   '/wildlife': typeof WildlifeRoute
   '/wildlife-t': typeof WildlifeTRoute
+  '/admin/cms': typeof AdminCmsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/drive': typeof AdminDriveRoute
+  '/admin/members': typeof AdminMembersRoute
+  '/admin/profile': typeof AdminProfileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -134,6 +169,11 @@ export interface FileRoutesByTo {
   '/volunteer-t': typeof VolunteerTRoute
   '/wildlife': typeof WildlifeRoute
   '/wildlife-t': typeof WildlifeTRoute
+  '/admin/cms': typeof AdminCmsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/drive': typeof AdminDriveRoute
+  '/admin/members': typeof AdminMembersRoute
+  '/admin/profile': typeof AdminProfileRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -152,6 +192,11 @@ export interface FileRoutesById {
   '/volunteer-t': typeof VolunteerTRoute
   '/wildlife': typeof WildlifeRoute
   '/wildlife-t': typeof WildlifeTRoute
+  '/admin/cms': typeof AdminCmsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/drive': typeof AdminDriveRoute
+  '/admin/members': typeof AdminMembersRoute
+  '/admin/profile': typeof AdminProfileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -171,6 +216,11 @@ export interface FileRouteTypes {
     | '/volunteer-t'
     | '/wildlife'
     | '/wildlife-t'
+    | '/admin/cms'
+    | '/admin/dashboard'
+    | '/admin/drive'
+    | '/admin/members'
+    | '/admin/profile'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -188,6 +238,11 @@ export interface FileRouteTypes {
     | '/volunteer-t'
     | '/wildlife'
     | '/wildlife-t'
+    | '/admin/cms'
+    | '/admin/dashboard'
+    | '/admin/drive'
+    | '/admin/members'
+    | '/admin/profile'
   id:
     | '__root__'
     | '/'
@@ -205,6 +260,11 @@ export interface FileRouteTypes {
     | '/volunteer-t'
     | '/wildlife'
     | '/wildlife-t'
+    | '/admin/cms'
+    | '/admin/dashboard'
+    | '/admin/drive'
+    | '/admin/members'
+    | '/admin/profile'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -223,6 +283,11 @@ export interface RootRouteChildren {
   VolunteerTRoute: typeof VolunteerTRoute
   WildlifeRoute: typeof WildlifeRoute
   WildlifeTRoute: typeof WildlifeTRoute
+  AdminCmsRoute: typeof AdminCmsRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminDriveRoute: typeof AdminDriveRoute
+  AdminMembersRoute: typeof AdminMembersRoute
+  AdminProfileRoute: typeof AdminProfileRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -332,6 +397,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/profile': {
+      id: '/admin/profile'
+      path: '/admin/profile'
+      fullPath: '/admin/profile'
+      preLoaderRoute: typeof AdminProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/members': {
+      id: '/admin/members'
+      path: '/admin/members'
+      fullPath: '/admin/members'
+      preLoaderRoute: typeof AdminMembersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/drive': {
+      id: '/admin/drive'
+      path: '/admin/drive'
+      fullPath: '/admin/drive'
+      preLoaderRoute: typeof AdminDriveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/cms': {
+      id: '/admin/cms'
+      path: '/admin/cms'
+      fullPath: '/admin/cms'
+      preLoaderRoute: typeof AdminCmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -351,6 +451,11 @@ const rootRouteChildren: RootRouteChildren = {
   VolunteerTRoute: VolunteerTRoute,
   WildlifeRoute: WildlifeRoute,
   WildlifeTRoute: WildlifeTRoute,
+  AdminCmsRoute: AdminCmsRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminDriveRoute: AdminDriveRoute,
+  AdminMembersRoute: AdminMembersRoute,
+  AdminProfileRoute: AdminProfileRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

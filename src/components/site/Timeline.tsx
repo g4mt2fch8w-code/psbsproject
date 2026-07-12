@@ -4,51 +4,56 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Reveal } from "@/components/effects/Reveal";
 
-const milestones = [
+export interface Milestone {
+  year: string;
+  title: string;
+  body: string;
+}
+
+export interface TimelineProps {
+  eyebrow?: string;
+  headingPart1?: string;
+  headingHighlight?: string;
+  headingPart2?: string;
+  description?: string;
+  milestonesData?: Milestone[];
+}
+
+const defaultMilestones: Milestone[] = [
   {
-    year: "2010",
-    title: "PSBS Founded",
-    body: "Born from a single forest walk in Bhandara district by naturalists who refused to watch the forests disappear.",
-  },
-  {
-    year: "2011",
-    title: "First Plantation Drive",
-    body: "1,200 native saplings planted across three degraded patches near Navegaon. The beginning of something larger.",
-  },
-  {
-    year: "2013",
-    title: "Wildlife Rescue Unit",
-    body: "A rapid-response team formed after a leopard cub was found injured near Tumsar. We never stopped rescuing since.",
-  },
-  {
-    year: "2015",
-    title: "Camera Trap Network",
-    body: "24 camera traps deployed across Nagzira, revealing a tiger corridor that had been unmapped for decades.",
-  },
-  {
-    year: "2017",
-    title: "Mendha Partnership",
-    body: "Collaborative conservation agreement with Mendha-Lekha village: the first community-led tiger patrol in Vidarbha.",
-  },
-  {
-    year: "2019",
-    title: "Hornbill Project",
-    body: "A dedicated study of Indian Hornbill nesting sites in Koka Sanctuary, published in partnership with BNHS.",
+    year: "2016",
+    title: "Wildlife Rescue",
+    body: "Began rescuing various wildlife species in the region, including spotted deers and other local fauna.",
   },
   {
     year: "2021",
-    title: "One Lakh Trees",
-    body: "The milestone. 100,000 saplings. The forest was answering back.",
+    title: "Tiger & Leopard Rescues",
+    body: "Conducted major big cat operations, including a successful tiger rescue and a critical leopard rescue in Dawwa Village.",
+  },
+  {
+    year: "2021",
+    title: "Monitoring & Camera Traps",
+    body: "Deployed our first camera trap network and initiated formal tiger monitoring to study local wildlife corridors.",
+  },
+  {
+    year: "2021",
+    title: "Awareness Programs",
+    body: "Launched extensive wildlife and environmental awareness programs across Bhandara district.",
+  },
+  {
+    year: "14 JAN 2022",
+    title: "PSBS Founded",
+    body: "Paryavaran Sanrakshan Bahuddeshiya Sanstha was officially established as a registered entity.",
   },
   {
     year: "2023",
-    title: "Gosikhurd Wetland Protection",
-    body: "Successfully lobbied for protected status of 189 km² of wetlands surrounding Gosikhurd dam.",
+    title: "Hariskranti Drive",
+    body: "Active participation in the Social Forestry Hariskranti Drive program to restore green cover.",
   },
   {
-    year: "2025",
-    title: "Regional Conservation Hub",
-    body: "PSBS becomes a coordination hub for 6 forest divisions across Vidarbha, linking 132 villages.",
+    year: "2021 - 2026",
+    title: "Anti-Poaching Participation",
+    body: "Consistent and active participation in local anti-poaching initiatives, providing vital support to forest departments to combat illegal wildlife trade and protect vulnerable habitats.",
   },
 ];
 
@@ -90,23 +95,37 @@ function AnimatedLine() {
   );
 }
 
-export function Timeline() {
+export function Timeline({
+  eyebrow = "Our Journey",
+  headingPart1 = "A legacy of ",
+  headingHighlight = "action",
+  headingPart2 = ".",
+  description = "From grassroots rescues to sweeping conservation campaigns, track the milestones that have defined our mission over the years.",
+  milestonesData = defaultMilestones
+}: TimelineProps) {
   return (
-    <section className="relative overflow-hidden bg-[color:var(--canopy)]/20 py-32 md:py-44 border-y border-white/[0.04]">
-      <div className="mx-auto max-w-[1500px] px-6 md:px-12">
+    <section id="timeline" className="relative bg-ink py-32 md:py-44">
+      {/* Container */}
+      <div className="relative z-10 mx-auto max-w-[1500px] px-6 md:px-12">
         <Reveal>
           <div className="flex items-center gap-4">
             <span className="h-px w-10 bg-gold/60" />
             <span className="text-[11px] uppercase tracking-[0.4em] text-gold/80">
-              Our Journey
+              {eyebrow}
             </span>
           </div>
         </Reveal>
-        <Reveal delay={0.15}>
-          <h2 className="mt-8 font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.02] text-fog">
-            A decade of roots{" "}
-            <em className="text-gold-gradient not-italic">and growth</em>.
-          </h2>
+        
+        <Reveal delay={0.1}>
+          <div className="mt-8 flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
+            <h2 className="max-w-2xl font-display text-[clamp(2.5rem,5.5vw,5rem)] leading-[1.02] text-fog whitespace-pre-wrap">
+              {headingPart1}<em className="text-gold-gradient not-italic">{headingHighlight}</em>
+              {headingPart2}
+            </h2>
+            <p className="max-w-sm text-sm text-fog/60 leading-relaxed md:text-base">
+              {description}
+            </p>
+          </div>
         </Reveal>
 
         <div className="relative mt-24">
@@ -115,7 +134,7 @@ export function Timeline() {
 
           {/* Timeline Nodes */}
           <div className="relative z-10 space-y-16">
-            {milestones.map((m, i) => {
+            {milestonesData.map((m, i) => {
               const isLeft = i % 2 === 0;
               return (
                 <motion.div

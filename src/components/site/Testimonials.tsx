@@ -6,27 +6,27 @@ import { Reveal } from "@/components/effects/Reveal";
 const testimonials = [
   {
     quote:
-      "Walking with PSBS in the pre-dawn forest near Nagzira changed me. You hear a tiger breathe and you understand why this work cannot stop.",
-    name: "Priya Deshpande",
-    role: "Field Volunteer, Nagpur",
+      "Coexistence is survival. We cannot protect the future of humanity without protecting the heartbeat of the wild. Every species has a role, every habitat holds a balance, and every action counts. Let’s protect the wild together—before it’s too late.",
+    name: "Azhar Hussein",
+    role: "NGO Founder",
   },
   {
     quote:
-      "After our village joined the patrol program, a tigress pugmark appeared within our boundary. Our children were prouder of that than anything else.",
-    name: "Ramrao Bhondwe",
-    role: "Gram Sabha Member, Mendha",
+      "We don't inherit the earth just to conquer it; we share it to survive. The true measure of our progress isn't how much land we develop, but how much wild space we leave untouched. When we shield wildlife, we shield ourselves. Let's choose harmony over footprint, and build a world where nature doesn't just endure, but thrives alongside us.",
+    name: "Mangesh Mhaske",
+    role: "NGO Co-Founder",
   },
   {
     quote:
-      "The tree I planted in 2017 is now taller than my house. My son visits it every day like a friend. That is what PSBS gave us: a living legacy.",
-    name: "Sunita Meshram",
-    role: "Community Member, Tumsar",
+      "Being a member of this NGO proved to me that you can protect the wild from anywhere. Based in Mumbai, I serve as a tiger identifier, analyzing remote data to track and safeguard these incredible animals. It gives me immense pleasure and a deep sense of purpose to know that my work directly impacts their survival, even from a bustling city. This organization makes remote conservation seamless, transparent, and deeply rewarding.",
+    name: "Harshil Jathan",
+    role: "NGO Member, Mumbai",
   },
   {
     quote:
-      "As a researcher I have worked with many NGOs. PSBS stands apart: their data is rigorous, their heart is real, and their forests are evidence.",
-    name: "Dr. Suresh Rane",
-    role: "Wildlife Biologist, Pune",
+      "Through the lens, the wild speaks. My work is dedicated to capturing the raw, unfiltered beauty of the natural world—not just to document it, but to foster a deep connection between us and the species we share this planet with. Every image tells a story of survival, resilience, and the fragile balance of our ecosystems.",
+    name: "Nihal Ganvir",
+    role: "NGO Secretary",
   },
 ];
 

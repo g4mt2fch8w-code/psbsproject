@@ -1,10 +1,7 @@
 import { Reveal } from "@/components/effects/Reveal";
 import { useEffect, useRef, useState, Suspense } from "react";
 import { useInView, motion, useSpring, useMotionValue } from "framer-motion";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { View, Float, Preload } from "@react-three/drei";
 import { ClientOnly } from "../effects/ClientOnly";
-import * as THREE from "three";
 
 const stats = [
   { value: 0, suffix: "+", label: "Trees Restored" },
@@ -14,32 +11,6 @@ const stats = [
   { value: 96, suffix: "", label: "Camera Traps" },
   { value: 218, suffix: "", label: "Species Documented" },
 ];
-
-function FloatingIcon({ index }: { index: number }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (!meshRef.current) return;
-    const t = state.clock.getElapsedTime();
-    meshRef.current.rotation.x = Math.sin(t * 0.5 + index) * 0.2;
-    meshRef.current.rotation.y = Math.cos(t * 0.3 + index) * 0.2;
-  });
-
-  return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-      <mesh ref={meshRef}>
-        <torusKnotGeometry args={[0.5, 0.15, 64, 8, 2, 3]} />
-        <meshStandardMaterial
-          color="#C9A13B"
-          metalness={0.9}
-          roughness={0.1}
-          emissive="#C9A13B"
-          emissiveIntensity={0.2}
-        />
-      </mesh>
-    </Float>
-  );
-}
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -128,14 +99,6 @@ export function Impact() {
                     transformStyle: "preserve-3d"
                   }}
                 >
-                  <div ref={viewRef} className="absolute inset-0 z-0 opacity-0 transition-opacity duration-500 group-hover:opacity-40">
-                    <View track={viewRef as any}>
-                      <Suspense fallback={null}>
-                        <FloatingIcon index={i} />
-                        <pointLight position={[5, 5, 5]} intensity={2} color="#C9A13B" />
-                      </Suspense>
-                    </View>
-                  </div>
 
                   <motion.div
                     className="relative z-10"
@@ -159,18 +122,6 @@ export function Impact() {
         </div>
       </div>
 
-      <ClientOnly>
-        <Canvas
-          eventSource={containerRef as any}
-          className="pointer-events-none fixed inset-0 z-0"
-          camera={{ position: [0, 0, 5], fov: 45 }}
-          gl={{ alpha: true, antialias: true, preserveDrawingBuffer: true }}
-        >
-          <ambientLight intensity={0.5} />
-          <View.Port />
-          <Preload all />
-        </Canvas>
-      </ClientOnly>
     </section>
   );
 }

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SmoothScroll } from "@/components/effects/SmoothScroll";
 import { CursorGlow } from "@/components/effects/CursorGlow";
-import { FloatingNature } from "@/components/effects/FloatingNature";
+
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
 import { Mission } from "@/components/site/Mission";
@@ -10,7 +10,7 @@ import { Wildlife } from "@/components/site/Wildlife";
 import { Forests } from "@/components/site/Forests";
 import { DataViz } from "@/components/site/DataViz";
 import { ClientOnly } from "@/components/effects/ClientOnly";
-import { RealisticGlobe } from "@/components/effects/RealisticGlobe";
+
 import { Journal } from "@/components/site/Journal";
 import { Join } from "@/components/site/Join";
 import { Footer } from "@/components/site/Footer";
@@ -48,15 +48,11 @@ function Index() {
       <main className="relative min-h-screen bg-ink text-foreground">
       <SmoothScroll />
       <CursorGlow />
-      <FloatingNature />
+
       <Hero />
       <Mission />
       <Timeline />
-      <section className="relative w-full border-t border-white/[0.06] bg-ink overflow-hidden z-10 pt-20 pb-10">
-        <ClientOnly>
-          <RealisticGlobe />
-        </ClientOnly>
-      </section>
+
       <Impact />
       <Wildlife />
       <Forests />

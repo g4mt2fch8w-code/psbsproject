@@ -3,7 +3,8 @@ import { useRef } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import heroImg from "@/assets/hero-forest.jpg";
 import { Fireflies } from "@/components/effects/Fireflies";
-import { ForestScene } from "@/components/effects/ForestScene";
+import { Link } from "@tanstack/react-router";
+
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -74,10 +75,7 @@ export function Hero() {
         />
       </motion.div>
 
-      {/* Layer 4: 3D particle field */}
-      <div className="absolute inset-0 opacity-80">
-        <ForestScene />
-      </div>
+
 
       {/* Layer 5: Fireflies */}
       <Fireflies density={70} />
@@ -165,12 +163,12 @@ export function Hero() {
             Begin the Journey
             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
           </a>
-          <a
-            href="#impact"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-7 py-3.5 text-sm text-white/90 backdrop-blur transition hover:border-gold/40 hover:bg-white/[0.06]"
+          <Link
+            to="/donate"
+            className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-7 py-3.5 text-sm font-medium text-gold backdrop-blur transition-all duration-300 hover:scale-105 hover:bg-gold/15 hover:shadow-[0_0_20px_rgba(201,161,59,0.3)]"
           >
-            See our Impact
-          </a>
+            Donate & Support
+          </Link>
         </motion.div>
       </motion.div>
 

@@ -614,9 +614,9 @@ export function Nav() {
               <Link
                 to="/volunteer"
                 onClick={() => setMenuOpen(false)}
-                className="flex items-center justify-center rounded-full border border-white/15 py-3.5 text-sm text-fog/80 hover:border-gold/30"
+                className="flex items-center justify-center rounded-full bg-white/10 py-3.5 text-sm font-medium text-white transition hover:bg-white/20 hover:scale-[1.02]"
               >
-                Volunteer
+                Volunteer & Join
               </Link>
             </div>
 

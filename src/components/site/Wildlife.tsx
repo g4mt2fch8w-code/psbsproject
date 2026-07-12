@@ -3,11 +3,7 @@ import tiger from "@/assets/tiger.jpg";
 import hornbill from "@/assets/hornbill.jpg";
 import deer from "@/assets/deer.jpg";
 import leopard from "@/assets/leopard.jpg";
-import { useRef, useState, Suspense } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import * as THREE from "three";
-import { useTexture, Text } from "@react-three/drei";
-import { ClientOnly } from "../effects/ClientOnly";
+import { useRef } from "react";
 
 const species = [
   {
@@ -44,121 +40,23 @@ const species = [
   },
 ];
 
-function CardContent({ s, hovered }: { s: typeof species[0]; hovered: boolean }) {
-  const groupRef = useRef<THREE.Group>(null);
-  const texture = useTexture(s.img);
-
-  useFrame((state) => {
-    if (!groupRef.current) return;
-    const { x, y } = state.pointer;
-    if (hovered) {
-      groupRef.current.rotation.y = THREE.MathUtils.lerp(
-        groupRef.current.rotation.y,
-        x * 0.3,
-        0.1,
-      );
-      groupRef.current.rotation.x = THREE.MathUtils.lerp(
-        groupRef.current.rotation.x,
-        -y * 0.3,
-        0.1,
-      );
-      groupRef.current.position.z = THREE.MathUtils.lerp(
-        groupRef.current.position.z,
-        1.2,
-        0.1,
-      );
-    } else {
-      groupRef.current.rotation.y = THREE.MathUtils.lerp(
-        groupRef.current.rotation.y,
-        0,
-        0.1,
-      );
-      groupRef.current.rotation.x = THREE.MathUtils.lerp(
-        groupRef.current.rotation.x,
-        0,
-        0.1,
-      );
-      groupRef.current.position.z = THREE.MathUtils.lerp(
-        groupRef.current.position.z,
-        0,
-        0.1,
-      );
-    }
-  });
-
-  return (
-    <group ref={groupRef}>
-      {/* Main Card Body */}
-      <mesh>
-        <boxGeometry args={[4, 5.5, 0.05]} />
-        <meshBasicMaterial map={texture} />
-      </mesh>
-
-      {/* Glossy Overlay */}
-      <mesh position={[0, 0, 0.03]}>
-        <planeGeometry args={[4, 5.5]} />
-        <meshPhysicalMaterial
-          transparent
-          opacity={0.1}
-          roughness={0.1}
-          metalness={0.8}
-          color="#ffffff"
-        />
-      </mesh>
-
-      {/* Floating Status Tag in 3D */}
-      <group position={[-1, 2.3, 0.3]} visible={hovered}>
-        <mesh>
-          <boxGeometry args={[1.4, 0.5, 0.1]} />
-          <meshBasicMaterial color="#C9A13B" />
-        </mesh>
-        <Text
-          position={[0, 0, 0.06]}
-          fontSize={0.15}
-          color="white"
-          anchorX="center"
-          anchorY="middle"
-          textTransform="uppercase"
-          font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZhrib2Bg-4.ttf"
-        >
-          {s.status}
-        </Text>
-      </group>
-
-      {/* Back Plate */}
-      <mesh position={[0, 0, -0.05]}>
-        <boxGeometry args={[4.2, 5.7, 0.01]} />
-        <meshBasicMaterial color="#111111" />
-      </mesh>
-    </group>
-  );
-}
-
 function Wildlife3DCard({ s }: { s: typeof species[0] }) {
-  const [hovered, setHovered] = useState(false);
   return (
     <article
       className="group relative h-[450px] md:h-[520px] overflow-hidden rounded-3xl border border-white/[0.06] bg-ink"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
     >
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <ClientOnly>
-          <Canvas
-            camera={{ position: [0, 0, 5], fov: 45 }}
-            dpr={[1, 2]}
-            gl={{ antialias: true, alpha: true }}
-          >
-            <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 10]} intensity={1} />
-            <Suspense fallback={null}>
-              <CardContent s={s} hovered={hovered} />
-            </Suspense>
-          </Canvas>
-        </ClientOnly>
+        <img
+          src={s.img}
+          alt={s.name}
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="absolute top-4 left-4 z-10 px-3 py-1 rounded bg-gold/90 text-[10px] uppercase font-bold text-ink backdrop-blur shadow-md opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+          {s.status}
+        </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-1 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 z-1 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
 
       {/* HTML Content */}
       <div className="pointer-events-none absolute right-5 top-5 z-10 text-right">

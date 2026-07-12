@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import heroImg from "@/assets/hero-forest.jpg";
 import { Fireflies } from "@/components/effects/Fireflies";
-import { ForestScene } from "@/components/effects/ForestScene";
+
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -71,11 +71,6 @@ export function Hero() {
           }}
         />
       </motion.div>
-
-      {/* Layer 4: 3D particle field */}
-      <div className="absolute inset-0 opacity-80">
-        <ForestScene />
-      </div>
 
       {/* Layer 5: Fireflies */}
       <Fireflies density={70} />
